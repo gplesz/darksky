@@ -10,7 +10,7 @@ A feladat kiírása [itt található](/todo.md) angol nyelven.
   - [ ] DarkSky api wrapper implementációk felderítése ([ticket](https://github.com/gplesz/darksky/issues/1))
   - [ ] DarkSky kliens alkalmazások felderítése ([ticket](https://github.com/gplesz/darksky/issues/4))
   - [ ] egyéb meteorológiai alkalmazások felderítése ([ticket](https://github.com/gplesz/darksky/issues/5))
-  - [ ] meteorológiai jellegű grafikai elemek felderítése (ticket #6)
+  - [ ] meteorológiai jellegű grafikai elemek felderítése ([ticket](https://github.com/gplesz/darksky/issues/6))
 - [ ] Bootstrapper 
   - technológiák kijelölése ([ticket](https://github.com/gplesz/darksky/issues/7))
   - fejlesztési terv/ütemterv készítése (Ez tulajdonkébben a [Milestone lista](https://github.com/gplesz/darksky/milestones), a kutatási feladatok lezárásával kerül végleges (terv) állapotba)
