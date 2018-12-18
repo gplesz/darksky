@@ -1,21 +1,27 @@
-﻿using pg.DarkSky.api.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace pg.DarkSky.Wpf.Models
 {
+    /// <summary>
+    /// Az előrejelzési adatok közül a megjelenítendőket tartalmazó
+    /// </summary>
     public class ForecastModel
     {
-        private readonly RequestService requestService;
 
-        public ForecastModel(RequestService requestService)
-        {
-            this.requestService = requestService ?? throw new ArgumentNullException(nameof(requestService));
-        }
+        /// <summary>
+        /// Sikerült-e lekérdezni az adatokat?
+        /// </summary>
+        public bool IsValid { get; set; }
 
-        
+        /// <summary>
+        /// Az aktuális adatok
+        /// </summary>
+        public ForecastModelDataPoint Current { get; set; }
+
+        /// <summary>
+        /// Az egy heti előrejelzés napi adatai
+        /// </summary>
+        public List<ForecastModelDataPoint> Daily { get; set; }
+
     }
 }

@@ -1,8 +1,11 @@
 ﻿Jellemző: ForecastModel
-	Fejlesztőként szükségem van egy adatmodellre, ami szolgáltatja az előrejelzési adatokat
+	Fejlesztőként szükségem van egy adatmodellre, ami tartalmazza az előrejelzési adatokat.
+	Ezen kívül szükségem van egy szolgáltatóra, ami az adatokat hozzáférhatővé teszi. Ez most egy repository lesz.
+	A repository azért lehet értelmes megoldás, mert később többféle kérést is ki tud szolgálni, és 
+	a már lekérd adatok gyorsítótárazását is rá lehet bízni.
 
-Forgatókönyv vázlat: GetForcast
-	Adott egy ForecastModel felparaméterezve  '<ApiKulcs>' '<Város>' és '<Nyelv>' adatokkal
+Forgatókönyv vázlat: GetForcastFromRepository
+	Adott egy ForecastRepository felparaméterezve  '<ApiKulcs>' '<Város>' és '<Nyelv>' adatokkal
 	Ha meghívom az előrejelzés kérését
 	Akkor megkapom a megfelelő adatokat ezzel az eredménnyel:  '<Érvényes>'
 Példák: 

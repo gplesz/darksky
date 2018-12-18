@@ -44,8 +44,10 @@ namespace pg.DarkSky.Wpf.tests
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("hu-HU"), "ForecastModel", "\tFejlesztőként szükségem van egy adatmodellre, ami szolgáltatja az előrejelzési a" +
-                    "datokat", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("hu-HU"), "ForecastModel", @"	Fejlesztőként szükségem van egy adatmodellre, ami tartalmazza az előrejelzési adatokat.
+	Ezen kívül szükségem van egy szolgáltatóra, ami az adatokat hozzáférhatővé teszi. Ez most egy repository lesz.
+	A repository azért lehet értelmes megoldás, mert később többféle kérést is ki tud szolgálni, és 
+	a már lekérd adatok gyorsítótárazását is rá lehet bízni.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -88,24 +90,24 @@ namespace pg.DarkSky.Wpf.tests
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void GetForcast(string tesztnev, string apiKulcs, string varos, string nyelv, string ervenyes, string[] exampleTags)
+        public virtual void GetForcastFromRepository(string tesztnev, string apiKulcs, string varos, string nyelv, string ervenyes, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetForcast", null, exampleTags);
-#line 4
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetForcastFromRepository", null, exampleTags);
+#line 7
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
- testRunner.Given(string.Format("egy ForecastModel felparaméterezve  \'{0}\' \'{1}\' és \'{2}\' adatokkal", apiKulcs, varos, nyelv), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
-#line 6
+#line 8
+ testRunner.Given(string.Format("egy ForecastRepository felparaméterezve  \'{0}\' \'{1}\' és \'{2}\' adatokkal", apiKulcs, varos, nyelv), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
+#line 9
  testRunner.When("meghívom az előrejelzés kérését", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
-#line 7
+#line 10
  testRunner.Then(string.Format("megkapom a megfelelő adatokat ezzel az eredménnyel:  \'{0}\'", ervenyes), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Akkor ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("GetForcast: Bp-hu")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("GetForcastFromRepository: Bp-hu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ForecastModel")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Bp-hu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "Bp-hu")]
@@ -113,15 +115,15 @@ this.ScenarioInitialize(scenarioInfo);
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Város", "47.49801,19.03991")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Nyelv", "hu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Érvényes", "true")]
-        public virtual void GetForcast_Bp_Hu()
+        public virtual void GetForcastFromRepository_Bp_Hu()
         {
-#line 4
-this.GetForcast("Bp-hu", "2f4659626fb968a85a5ff22561962711", "47.49801,19.03991", "hu", "true", ((string[])(null)));
+#line 7
+this.GetForcastFromRepository("Bp-hu", "2f4659626fb968a85a5ff22561962711", "47.49801,19.03991", "hu", "true", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("GetForcast: Bp-hu-wrongapikey")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("GetForcastFromRepository: Bp-hu-wrongapikey")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "ForecastModel")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "Bp-hu-wrongapikey")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "Bp-hu-wrongapikey")]
@@ -129,10 +131,10 @@ this.GetForcast("Bp-hu", "2f4659626fb968a85a5ff22561962711", "47.49801,19.03991"
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Város", "47.49801,19.03991")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Nyelv", "hu")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:Érvényes", "false")]
-        public virtual void GetForcast_Bp_Hu_Wrongapikey()
+        public virtual void GetForcastFromRepository_Bp_Hu_Wrongapikey()
         {
-#line 4
-this.GetForcast("Bp-hu-wrongapikey", "wrongapikey", "47.49801,19.03991", "hu", "false", ((string[])(null)));
+#line 7
+this.GetForcastFromRepository("Bp-hu-wrongapikey", "wrongapikey", "47.49801,19.03991", "hu", "false", ((string[])(null)));
 #line hidden
         }
     }
