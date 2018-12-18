@@ -1,27 +1,34 @@
 ﻿using System;
+using pg.DarkSky.api.Model;
+using pg.DarkSky.api.Model.FromDarkSky;
+using pg.DarkSky.api.Service;
 using TechTalk.SpecFlow;
+using Xunit;
 
 namespace pg.DarkSky.api.tests
 {
     [Binding]
     public class ApiRequestsSteps
     {
+        private RequestService service;
+        private ApiResult<ApiResponse> result;
+
         [Given(@"egy API kapcsolat '(.*)' '(.*)' és '(.*)' adatokkal")]
-        public void AmennyibenEgyAPIKapcsolatEsAdatokkal(string apikey, string coordinates, string lang)
+        public void AmennyibenEgyAPIKapcsolatEsAdatokkal(string apiKey, string coordinates, string lang)
         {
-            ScenarioContext.Current.Pending();
+            service = new Service.RequestService(apiKey, coordinates, lang);
         }
 
         [When(@"lekérdezem az időjárási adatokat")]
         public void MajdLekerdezemAzIdojarasiAdatokat()
         {
-            ScenarioContext.Current.Pending();
+            result = service.GetCurrentAndDailyData();
         }
         
         [Then(@"a válasz true lesz")]
         public void AkkorAValaszTrueLesz()
         {
-            ScenarioContext.Current.Pending();
+            Assert.True(result.HasSuccess);
         }
     }
 }

@@ -77,18 +77,18 @@ namespace pg.DarkSky.api.tests
             this.ScenarioTearDown();
         }
         
-        [Xunit.TheoryAttribute(DisplayName="GetWithCoordinateAndLanguage")]
+        [Xunit.TheoryAttribute(DisplayName="GetDataWithCoordinateAndLanguage")]
         [Xunit.TraitAttribute("FeatureTitle", "ApiRequests")]
-        [Xunit.TraitAttribute("Description", "GetWithCoordinateAndLanguage")]
+        [Xunit.TraitAttribute("Description", "GetDataWithCoordinateAndLanguage")]
         [Xunit.InlineDataAttribute("Bp-hu", "2f4659626fb968a85a5ff22561962711", "47.49801,19.03991", "hu", "true", new string[0])]
-        public virtual void GetWithCoordinateAndLanguage(string teszt, string apikulcs, string varos, string nyelv, string ervenyes, string[] exampleTags)
+        public virtual void GetDataWithCoordinateAndLanguage(string tesztnev, string apiKulcs, string varos, string nyelv, string ervenyes, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetWithCoordinateAndLanguage", null, exampleTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("GetDataWithCoordinateAndLanguage", null, exampleTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 5
- testRunner.Given(string.Format("egy API kapcsolat \'{0}\' \'{1}\' és \'{2}\' adatokkal", apikulcs, varos, nyelv), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
+ testRunner.Given(string.Format("egy API kapcsolat \'{0}\' \'{1}\' és \'{2}\' adatokkal", apiKulcs, varos, nyelv), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
 #line 6
  testRunner.When("lekérdezem az időjárási adatokat", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
 #line 7

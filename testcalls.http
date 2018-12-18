@@ -13,5 +13,5 @@
 
 #és a units=auto a városnak megfelelő mértékegységet használja.
 
-GET https://api.darksky.net/forecast/2f4659626fb968a85a5ff22561962711/47.49801,19.03991?exclude=min
+GET https://api.darksky.net/forecast/2f4659626fb968a85a5ff22561962711/47.49801,19.03991?exclude=minutely,hourly,alerts,flags&units=si&lang=hu
 Accept-Encoding: gzip
