@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using Serilog;
 using System;
 using System.Linq;
 
@@ -16,6 +17,9 @@ namespace pg.DarkSky.api.Service
         private readonly string host = "https://api.darksky.net";
         private RestClient client;
         private string xForecastApiCalls = "X-Forecast-API-Calls";
+
+        //todo: később DI-vel elkérni a naplózót
+        private ILogger logger = Log.Logger;
 
 
         /// <summary>
@@ -48,6 +52,8 @@ namespace pg.DarkSky.api.Service
             this.language = language;
             //a restclient nem nagyon cserélhető, így nincs sok értelme DI-vel bekérni
             client = new RestClient(host);
+
+            logger.Debug("RequestService created with coordinates: {Coordinates}, language: {Language}", coordinates, language);
         }
 
         public Model.ApiResult<Model.FromDarkSky.ApiResponse> GetCurrentAndDailyData()
@@ -65,6 +71,8 @@ namespace pg.DarkSky.api.Service
 
             if (!result.IsSuccessful)
             {
+                logger.Error("Request to API {Host} was unsuccessful. StatusCode: {StatusCode}, Description: {StatusDescription}", 
+                    host, result.StatusCode, result.StatusDescription);
                 return new Model.ApiResult<Model.FromDarkSky.ApiResponse> { HasSuccess = false };
             }
 
@@ -77,6 +85,16 @@ namespace pg.DarkSky.api.Service
             if (int.TryParse(callsHeaderValue, out int calls))
             {
                 callsNum = calls;
+            }
+
+
+            if (logger.IsEnabled(Serilog.Events.LogEventLevel.Verbose))
+            {
+                logger.Debug("Request to API {Host} was successful. Forecast API calls: {ForecastApiCalls}. ResultData: {@Data}", host, calls, result.Data);
+            }
+            else
+            {
+                logger.Debug("Request to API {Host} was successful. Forecast API calls: {ForecastApiCalls}", host, calls);
             }
 
             return new Model.ApiResult<Model.FromDarkSky.ApiResponse>
