@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		todo.md = todo.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pg.DarkSky.Wpf.tests", "pg.DarkSky.Wpf.tests\pg.DarkSky.Wpf.tests.csproj", "{1E940037-A8C9-4032-AEE5-4482FDC3FA39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{50A0389C-F2D2-4A38-89D2-829C060AC698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50A0389C-F2D2-4A38-89D2-829C060AC698}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50A0389C-F2D2-4A38-89D2-829C060AC698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E940037-A8C9-4032-AEE5-4482FDC3FA39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E940037-A8C9-4032-AEE5-4482FDC3FA39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E940037-A8C9-4032-AEE5-4482FDC3FA39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E940037-A8C9-4032-AEE5-4482FDC3FA39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
