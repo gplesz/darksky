@@ -1,5 +1,4 @@
-﻿using System;
-using pg.DarkSky.api.Model;
+﻿using pg.DarkSky.api.Model;
 using pg.DarkSky.api.Model.FromDarkSky;
 using pg.DarkSky.api.Service;
 using TechTalk.SpecFlow;

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace pg.DarkSky.api.Model.FromDarkSky
+﻿namespace pg.DarkSky.api.Model.FromDarkSky
 {
     /// <summary>
     /// 
