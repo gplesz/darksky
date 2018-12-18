@@ -10,6 +10,7 @@
         public string timezone { get; set; }
         public CurrentlyDataPoint currently { get; set; }
         public DailyDataBlock daily { get; set; }
+        public Flags flags { get; set; }
         public int offset { get; set; }
     }
 }
