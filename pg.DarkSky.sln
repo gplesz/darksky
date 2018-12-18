@@ -5,9 +5,16 @@ VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pg.DarkSky.Wpf", "pg.DarkSky.Wpf\pg.DarkSky.Wpf.csproj", "{6C1105D0-19F9-4036-A496-1781531F5A72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pg.DarkSky.api", "pg.DarkSky.api\pg.DarkSky.api.csproj", "{22B45E3A-5F3F-41A7-952E-8884370A9834}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.DarkSky.api", "pg.DarkSky.api\pg.DarkSky.api.csproj", "{22B45E3A-5F3F-41A7-952E-8884370A9834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pg.DarkSky.api.tests", "pg.DarkSky.api.tests\pg.DarkSky.api.tests.csproj", "{50A0389C-F2D2-4A38-89D2-829C060AC698}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pg.DarkSky.api.tests", "pg.DarkSky.api.tests\pg.DarkSky.api.tests.csproj", "{50A0389C-F2D2-4A38-89D2-829C060AC698}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{526126C5-6DDD-4DFD-AC47-8C3BF0FDCF30}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		testcalls.http = testcalls.http
+		todo.md = todo.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

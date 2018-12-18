@@ -43,10 +43,20 @@ namespace pg.DarkSky.api.tests
 
         }
         
-        [Then(@"a válasz true lesz")]
-        public void AkkorAValaszTrueLesz()
+        [Then(@"a válasz eredménye ez lesz: '(.*)' lesz")]
+        public void AkkorAValaszEredmenyeEzLeszLesz(bool isOk)
         {
-            Assert.True(result.HasSuccess);
+            logger.Information("Result must be valid: {IsOk}", isOk);
+
+            if (isOk)
+            {
+                Assert.True(result.HasSuccess);
+            }
+            else
+            {
+                Assert.False(result.HasSuccess);
+            }
+
         }
     }
 }
