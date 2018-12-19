@@ -89,9 +89,9 @@ namespace pg.DarkSky.api.tests
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 5
- testRunner.Given(string.Format("egy API kapcsolat \'{0}\' \'{1}\' és \'{2}\' adatokkal", apiKulcs, varos, nyelv), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
+ testRunner.Given(string.Format("egy API kapcsolat \'{0}\' paraméterrel", apiKulcs), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
 #line 6
- testRunner.When("lekérdezem az időjárási adatokat", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
+ testRunner.When(string.Format("lekérdezem az időjárási adatokat \'{0}\' és \'{1}\' adatokkal", varos, nyelv), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
 #line 7
  testRunner.Then(string.Format("a válasz eredménye ez lesz: \'{0}\' lesz", ervenyes), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Akkor ");
 #line hidden

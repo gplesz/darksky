@@ -10,53 +10,45 @@ namespace pg.DarkSky.api.Service
     /// </summary>
     public class RequestService
     {
-        private readonly string apiKey;
-        private readonly string coordinates;
-        private readonly string language;
         //todo: ezt alkalmazás paraméterként be lehetne kérni, de nem változik, szóval a feladat miatt nem érdemes
         private readonly string host = "https://api.darksky.net";
+        //todo: ahogy ezt is alkalmazás paraméterként be lehetne kérni, Option pattern-nel, mondjuk, attól függ, hogy az apikey honnan jön
+        private readonly string apiKey;
         private RestClient client;
         private string xForecastApiCalls = "X-Forecast-API-Calls";
 
-        //todo: később DI-vel elkérni a naplózót
-        private ILogger logger = Log.Logger;
-
-
+        private ILogger logger;
         /// <summary>
         /// A szerviz indítása
         /// 
         /// todo: azon lehet gondolkodni, hogy a paramétereket a konstruktor helyett a hívásba is tehetjük
+        ///       konkrétan: az apikey marad itt, a coordinates és a language pedig hívásról hívásra változik.
+        ///       Ez egyébként amúgyis így van, úgyhogy ezt 
         /// </summary>
         /// <param name="apiKey">api kulcs</param>
-        /// <param name="coordinates">a koordináták szóköz nélkül, vesszővel elválasztva. pl.: "47.49801,19.03991"</param>
-        /// <param name="language">nyelvi beállítás, ezen a nyelven válaszol az api</param>
-        public RequestService(string apiKey, string coordinates, string language)
+        public RequestService(string apiKey, ILogger logger)
         {
             if (string.IsNullOrWhiteSpace(apiKey))
             {
                 throw new ArgumentException("message", nameof(apiKey));
             }
-
-            if (string.IsNullOrWhiteSpace(coordinates))
-            {
-                throw new ArgumentException("message", nameof(coordinates));
-            }
-
-            if (string.IsNullOrEmpty(language))
-            {
-                throw new ArgumentException("message", nameof(language));
-            }
-
             this.apiKey = apiKey;
-            this.coordinates = coordinates;
-            this.language = language;
+
+            this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
             //a restclient nem nagyon cserélhető, így nincs sok értelme DI-vel bekérni
             client = new RestClient(host);
 
-            logger.Debug("RequestService created with coordinates: {Coordinates}, language: {Language}", coordinates, language);
+            logger.Debug("RequestService created");
         }
 
-        public Model.ApiResult<Model.FromDarkSky.ApiResponse> GetCurrentAndDailyData()
+        /// <summary>
+        /// Egy időjárás elpőrejelzés kérése
+        /// </summary>
+        /// <param name="coordinates">a koordináták szóköz nélkül, vesszővel elválasztva. pl.: "47.49801,19.03991"</param>
+        /// <param name="language">nyelvi beállítás, ezen a nyelven válaszol az api</param>
+        /// <returns></returns>
+        public Model.ApiResult<Model.FromDarkSky.ApiResponse> GetCurrentAndDailyData(string coordinates, string language)
         {
             var request = new RestRequest("/forecast/{apiKey}/{coordinates}");
             request.AddUrlSegment("apiKey", apiKey);
@@ -67,11 +59,14 @@ namespace pg.DarkSky.api.Service
             request.AddParameter("lang", "hu");
 
             //todo: async hívást lehet ide tervezni, de mivel egyszer hívünk az alkalmazásból, nagy jelentősége most nincs
+            //todo: tranziensre fel lehet készülni Polly-val
+            //todo: tesztelni, hogy mi van, ha nincs egyáltalán hálózat
             var result = client.Execute<Model.FromDarkSky.ApiResponse>(request);
 
             if (!result.IsSuccessful)
             {
-                logger.Error("Request to API {Host} was unsuccessful. StatusCode: {StatusCode}, Description: {StatusDescription}", 
+                logger.Error("Request to API {Host} was unsuccessful. Parameters: {coordinates}, {language} StatusCode: {StatusCode}, Description: {StatusDescription}",
+                    coordinates, language,
                     host, result.StatusCode, result.StatusDescription);
                 return new Model.ApiResult<Model.FromDarkSky.ApiResponse> { HasSuccess = false };
             }
@@ -87,6 +82,8 @@ namespace pg.DarkSky.api.Service
                 callsNum = calls;
             }
 
+            //todo: a flag-ben lehetnek még érdekes információk, például darksky-unavailable, ezt fel lehet dolgozni
+            //https://darksky.net/dev/docs#response-flags
 
             if (logger.IsEnabled(Serilog.Events.LogEventLevel.Verbose))
             {

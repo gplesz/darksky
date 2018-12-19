@@ -97,9 +97,9 @@ namespace pg.DarkSky.Wpf.tests
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 8
- testRunner.Given(string.Format("egy ForecastRepository felparaméterezve  \'{0}\' \'{1}\' és \'{2}\' adatokkal", apiKulcs, varos, nyelv), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
+ testRunner.Given(string.Format("egy ForecastRepository felparaméterezve  \'{0}\' paraméterrel", apiKulcs), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
 #line 9
- testRunner.When("meghívom az előrejelzés kérését", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
+ testRunner.When(string.Format("meghívom az előrejelzés kérését \'{0}\' és \'{1}\' adatokkal", varos, nyelv), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
 #line 10
  testRunner.Then(string.Format("megkapom a megfelelő adatokat ezzel az eredménnyel:  \'{0}\'", ervenyes), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Akkor ");
 #line hidden

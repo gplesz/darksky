@@ -18,27 +18,25 @@ namespace pg.DarkSky.api.tests
 
         public ApiRequestsSteps(ITestOutputHelper output)
         {
-            Log.Logger = new LoggerConfiguration()
-                        .MinimumLevel.Verbose()
-                        .WriteTo.TestOutput(output, Serilog.Events.LogEventLevel.Verbose)
-                        .CreateLogger()
-                        .ForContext<ApiRequestsSteps>();
-
-            //todo: ha majd tudok rá egyszerű DI-t, akkor csinálom
-            logger = Log.Logger;
+            logger = new LoggerConfiguration()
+                            .MinimumLevel.Verbose()
+                            .WriteTo.TestOutput(output, Serilog.Events.LogEventLevel.Verbose)
+                            .CreateLogger()
+                            .ForContext<ApiRequestsSteps>();
         }
 
-        [Given(@"egy API kapcsolat '(.*)' '(.*)' és '(.*)' adatokkal")]
-        public void AmennyibenEgyAPIKapcsolatEsAdatokkal(string apiKey, string coordinates, string language)
+        [Given(@"egy API kapcsolat '(.*)' paraméterrel")]
+        public void AmennyibenEgyAPIKapcsolatEsAdatokkal(string apiKey)
+        {
+            logger.Information("Create API request service");
+            service = new Service.RequestService(apiKey, logger);
+        }
+
+        [When(@"lekérdezem az időjárási adatokat '(.*)' és '(.*)' adatokkal")]
+        public void MajdLekerdezemAzIdojarasiAdatokat(string coordinates, string language)
         {
             logger.Information("Request to API with {Coordinates} and {Language}", coordinates, language);
-            service = new Service.RequestService(apiKey, coordinates, language);
-        }
-
-        [When(@"lekérdezem az időjárási adatokat")]
-        public void MajdLekerdezemAzIdojarasiAdatokat()
-        {
-            result = service.GetCurrentAndDailyData();
+            result = service.GetCurrentAndDailyData(coordinates, language);
             logger.Information("Result arrived: {@Result}", result);
 
         }

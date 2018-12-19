@@ -5,8 +5,8 @@
 	a már lekérd adatok gyorsítótárazását is rá lehet bízni.
 
 Forgatókönyv vázlat: GetForcastFromRepository
-	Adott egy ForecastRepository felparaméterezve  '<ApiKulcs>' '<Város>' és '<Nyelv>' adatokkal
-	Ha meghívom az előrejelzés kérését
+	Adott egy ForecastRepository felparaméterezve  '<ApiKulcs>' paraméterrel
+	Ha meghívom az előrejelzés kérését '<Város>' és '<Nyelv>' adatokkal
 	Akkor megkapom a megfelelő adatokat ezzel az eredménnyel:  '<Érvényes>'
 Példák: 
 | tesztnév          | ApiKulcs                         | Város             | Nyelv | Érvényes |

@@ -19,9 +19,9 @@ namespace pg.DarkSky.Wpf.Models
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public ForecastModel GetData()
+        public ForecastModel GetData(string coordinates, string language)
         {
-            var apiData = requestService.GetCurrentAndDailyData();
+            var apiData = requestService.GetCurrentAndDailyData(coordinates, language);
             return mapper.Map<ForecastModel>(apiData);
         }
     }

@@ -2,8 +2,8 @@
 	Fejlesztőként szükségem van egy osztályra, amin keresztül elérem az API felületet.
 
 Forgatókönyv vázlat: GetDataWithCoordinateAndLanguage
-	Adott egy API kapcsolat '<ApiKulcs>' '<Város>' és '<Nyelv>' adatokkal
-	Ha lekérdezem az időjárási adatokat
+	Adott egy API kapcsolat '<ApiKulcs>' paraméterrel 
+	Ha lekérdezem az időjárási adatokat '<Város>' és '<Nyelv>' adatokkal
 	Akkor a válasz eredménye ez lesz: '<Érvényes>' lesz
 Példák: 
 | tesztnév          | ApiKulcs                         | Város             | Nyelv | Érvényes |
