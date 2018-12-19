@@ -20,11 +20,9 @@ namespace pg.DarkSky.Wpf.tests
         public ForecastModelSteps()
         {
             //a tesztben nincs DI így nekünk kell a loggert konfigurálni
-            Log.Logger = new LoggerConfiguration()
+            logger = new LoggerConfiguration()
                                 .WriteTo.Console()
                                 .CreateLogger();
-
-            logger = Log.Logger;
 
             //a tesztben nincs DI így nekünk kell a mappert konfigurálni
             var config = new MapperConfiguration(cfg => {
