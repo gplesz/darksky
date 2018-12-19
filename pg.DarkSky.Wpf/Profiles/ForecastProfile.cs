@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using pg.DarkSky.api.Model.FromDarkSky;
 using pg.DarkSky.Wpf.Models;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,14 @@ namespace pg.DarkSky.Wpf.Profiles
     {
         public ForecastProfile()
         {
-            CreateMap<api.Model.ApiResult<api.Model.FromDarkSky.ApiResponse>, ForecastModel>();
+            CreateMap<CurrentlyDataPoint, ForecastModelDataPoint>();
+
+            CreateMap<DailyDataPoint, ForecastModelDataPoint>();
+
+            CreateMap<api.Model.ApiResult<ApiResponse>, ForecastModel>()
+                .ForMember(d => d.IsValid, o => o.MapFrom(s => s.HasSuccess))
+                .ForMember(d => d.Current, o => o.MapFrom(s => s.Data.currently))
+                .ForMember(d => d.Daily, o => o.MapFrom(s => s.Data.daily.data));
         }
     }
 }

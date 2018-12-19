@@ -23,5 +23,9 @@ namespace pg.DarkSky.Wpf.Models
         /// </summary>
         public List<ForecastModelDataPoint> Daily { get; set; }
 
+        /// <summary>
+        /// Az elhasznált hívások száma
+        /// </summary>
+        public int ForecastApiCalls { get; set; }
     }
 }
