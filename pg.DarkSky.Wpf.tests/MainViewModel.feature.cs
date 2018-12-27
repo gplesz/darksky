@@ -152,6 +152,36 @@ this.INotifyPropertyChanged("MainViewModel ForecastApiCalls", "MainViewModel", "
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("INotifyPropertyChanged: MainViewModel SelectedLanguage")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel SelectedLanguage")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel SelectedLanguage")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "SelectedLanguage")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "hu")]
+        public virtual void INotifyPropertyChanged_MainViewModelSelectedLanguage()
+        {
+#line 4
+this.INotifyPropertyChanged("MainViewModel SelectedLanguage", "MainViewModel", "SelectedLanguage", "hu", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("INotifyPropertyChanged: MainViewModel SelectedCity")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel SelectedCity")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel SelectedCity")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "SelectedCity")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "Budapest")]
+        public virtual void INotifyPropertyChanged_MainViewModelSelectedCity()
+        {
+#line 4
+this.INotifyPropertyChanged("MainViewModel SelectedCity", "MainViewModel", "SelectedCity", "Budapest", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("INotifyPropertyChanged: ForecastViewModel Time")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "ForecastViewModel Time")]

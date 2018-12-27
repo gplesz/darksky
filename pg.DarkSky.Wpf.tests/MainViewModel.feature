@@ -11,6 +11,8 @@ Példák:
 	| MainViewModel HasSuccess              | MainViewModel     | HasSuccess          | true                       |
 	| MainViewModel IsBusy                  | MainViewModel     | IsBusy              | true                       |
 	| MainViewModel ForecastApiCalls        | MainViewModel     | ForecastApiCalls    | 5                          |
+	| MainViewModel SelectedLanguage        | MainViewModel     | SelectedLanguage    | hu                         |
+	| MainViewModel SelectedCity            | MainViewModel     | SelectedCity        | Budapest                   |
 	| ForecastViewModel Time                | ForecastViewModel | Time                | 12/27/2018 10:00:00 +01:00 |
 	| ForecastViewModel Summary             | ForecastViewModel | Summary             | summary                    |
 	| ForecastViewModel Icon                | ForecastViewModel | Icon                | icon                       |
