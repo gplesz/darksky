@@ -26,3 +26,13 @@ Forgatókönyv: map ApiResult to ForecastModel
 	Adott egy felparaméterezett mapper
 	Ha egy ApiResult példányt transzformálok ForecastModel típusra
 	Akkor a ForecastModel példány jól van kitöltve
+
+Forgatókönyv: map ForecastModelDataPoint to ForecastViewModel
+	Adott egy felparaméterezett mapper
+	Ha egy ForecastModelDataPoint példányt transzformálok ForecastViewModel típusra
+	Akkor a ForecastViewModel példány jól van kitöltve
+
+Forgatókönyv: map ForecastModel to MainViewModel
+	Adott egy felparaméterezett mapper
+	Ha egy ForecastModel példányt transzformálok MainViewModel típusra
+	Akkor a MainViewModel példány jól van kitöltve

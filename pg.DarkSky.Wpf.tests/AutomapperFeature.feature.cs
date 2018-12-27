@@ -183,6 +183,44 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("map ForecastModelDataPoint to ForecastViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Automapper")]
+        public virtual void MapForecastModelDataPointToForecastViewModel()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("map ForecastModelDataPoint to ForecastViewModel", null, ((string[])(null)));
+#line 30
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 31
+ testRunner.Given("egy felparaméterezett mapper", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
+#line 32
+ testRunner.When("egy ForecastModelDataPoint példányt transzformálok ForecastViewModel típusra", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
+#line 33
+ testRunner.Then("a ForecastViewModel példány jól van kitöltve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Akkor ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("map ForecastModel to MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Automapper")]
+        public virtual void MapForecastModelToMainViewModel()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("map ForecastModel to MainViewModel", null, ((string[])(null)));
+#line 35
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 36
+ testRunner.Given("egy felparaméterezett mapper", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
+#line 37
+ testRunner.When("egy ForecastModel példányt transzformálok MainViewModel típusra", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
+#line 38
+ testRunner.Then("a MainViewModel példány jól van kitöltve", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Akkor ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

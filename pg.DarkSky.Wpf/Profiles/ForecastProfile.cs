@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using pg.DarkSky.api.Model.FromDarkSky;
 using pg.DarkSky.Wpf.Models;
+using pg.DarkSky.Wpf.ViewModels;
 using System;
 
 namespace pg.DarkSky.Wpf.Profiles
@@ -28,6 +29,26 @@ namespace pg.DarkSky.Wpf.Profiles
                 .ForMember(d => d.IsValid, o => o.MapFrom(s => s.HasSuccess))
                 .ForMember(d => d.Current, o => o.MapFrom(s => s.Data.currently))
                 .ForMember(d => d.Daily, o => o.MapFrom(s => s.Data.daily.data));
+
+            CreateMap<ForecastModelDataPoint, ForecastViewModel>()
+                ;
+
+            CreateMap<ForecastModel, MainViewModel>()
+                .ForMember(d => d.HasSuccess, o => o.MapFrom(s => s.IsValid))
+                .ForMember(d => d.ForecastApiCalls, o => o.MapFrom(s => s.ForecastApiCalls))
+                //ezek automatikusan mappelődnek
+                //.ForMember(d => d.Current, o => o.MapFrom(s => s.Current))
+                //.ForMember(d => d.Daily, o => o.MapFrom(s => s.Daily))
+                //ezeket nem az api hívás tölti
+                .ForMember(d => d.IsBusy, o => o.Ignore())
+                .ForMember(d => d.RefreshDataCommand, o => o.Ignore())
+                .ForMember(d => d.SelectableCity, o => o.Ignore())
+                .ForMember(d => d.SelectedCity, o => o.Ignore())
+                .ForMember(d => d.SelectableLanguage, o => o.Ignore())
+                .ForMember(d => d.SelectedLanguage, o => o.Ignore())
+                ;
+
+
         }
 
         private static DateTimeOffset FromUnixTimeToDateTime(long time)

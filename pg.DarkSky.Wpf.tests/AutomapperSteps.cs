@@ -4,6 +4,7 @@ using pg.DarkSky.api.Model;
 using pg.DarkSky.api.Model.FromDarkSky;
 using pg.DarkSky.Wpf.Models;
 using pg.DarkSky.Wpf.Profiles;
+using pg.DarkSky.Wpf.ViewModels;
 using Serilog;
 using Serilog.Core;
 using System;
@@ -21,6 +22,8 @@ namespace pg.DarkSky.Wpf.tests
         private ForecastModelDataPoint forecast;
         private List<ForecastModelDataPoint> forecastList;
         private ForecastModel apiResult;
+        private ForecastViewModel forecastViewModel;
+        private MainViewModel mainViewModel;
 
         public AutomapperSteps()
         {
@@ -133,6 +136,38 @@ namespace pg.DarkSky.Wpf.tests
             AssertListOfForecastDataPointList(apiResult.Daily);
         }
 
+        [When(@"egy ForecastModelDataPoint példányt transzformálok ForecastViewModel típusra")]
+        public void MajdEgyForecastModelDataPointPeldanytTranszformalokForecastViewModelTipusra()
+        {
+            var forecast = ForecastDataPointFactory();
+
+            forecastViewModel = mapper.Map<ForecastViewModel>(forecast);
+
+            logger.Information("Mapped from {@ForecastDataPoint} to {@ForecastViewModel}", forecast, forecastViewModel);
+        }
+
+        [Then(@"a ForecastViewModel példány jól van kitöltve")]
+        public void AkkorAForecastViewModelPeldanyJolVanKitoltve()
+        {
+            AssertForecastViewModel(forecastViewModel);
+        }
+
+        [When(@"egy ForecastModel példányt transzformálok MainViewModel típusra")]
+        public void MajdEgyForecastModelPeldanytTranszformalokMainViewModelTipusra()
+        {
+            var forecast = ForecastFactory();
+
+            mainViewModel = mapper.Map<MainViewModel>(forecast);
+
+            logger.Information("Mapped from {@Forecast} to {@MainViewModel}", forecast, mainViewModel);
+        }
+
+        [Then(@"a MainViewModel példány jól van kitöltve")]
+        public void AkkorAMainViewModelPeldanyJolVanKitoltve()
+        {
+            AssertMainViewModel(mainViewModel);
+        }
+
         private static List<DailyDataPoint> DailyDataPointListFactory()
         {
             //todo: itt lehetne a minimumra és még egy köztes értékre tesztet írni
@@ -224,7 +259,56 @@ namespace pg.DarkSky.Wpf.tests
             };
         }
 
+        private ForecastModelDataPoint ForecastDataPointFactory()
+        {
+            return new ForecastModelDataPoint
+            {
+                Time = new DateTimeOffset(2018, 12, 17, 23, 0, 0, TimeSpan.FromSeconds(0)),
+                Summary = "Ködös idő reggel.",
+                Icon = "fog",
+                Temperature = double.MaxValue,
+                ApparentTemperature = double.MaxValue,
+                AtmosphericPressure = double.MaxValue,
+                WindSpeed = double.MaxValue,
+                Humidity = double.MaxValue,
+                UvIndex = int.MaxValue
+            };
+        }
+
+        private object ForecastFactory()
+        {
+            var daily = new List<ForecastModelDataPoint>();
+
+            for (int i = 0; i < 7; i++)
+            {
+                daily.Add(ForecastDataPointFactory());
+            }
+
+            return new ForecastModel
+            {
+                Current = ForecastDataPointFactory(),
+                ForecastApiCalls = 11,
+                IsValid = true,
+                Daily = daily
+            };
+        }
+
+
         private static void AssertForecastDataPoint(ForecastModelDataPoint sut)
+        {
+            Assert.IsNotNull(sut);
+            Assert.AreEqual(new DateTimeOffset(2018, 12, 17, 23, 0, 0, TimeSpan.FromSeconds(0)), sut.Time);
+            Assert.AreEqual("Ködös idő reggel.", sut.Summary);
+            Assert.AreEqual("fog", sut.Icon);
+            Assert.AreEqual(double.MaxValue, sut.Temperature);
+            Assert.AreEqual(double.MaxValue, sut.ApparentTemperature);
+            Assert.AreEqual(double.MaxValue, sut.AtmosphericPressure);
+            Assert.AreEqual(double.MaxValue, sut.WindSpeed);
+            Assert.AreEqual(double.MaxValue, sut.Humidity);
+            Assert.AreEqual(int.MaxValue, sut.UvIndex);
+        }
+
+        private void AssertForecastViewModel(ForecastViewModel sut)
         {
             Assert.IsNotNull(sut);
             Assert.AreEqual(new DateTimeOffset(2018, 12, 17, 23, 0, 0, TimeSpan.FromSeconds(0)), sut.Time);
@@ -245,6 +329,21 @@ namespace pg.DarkSky.Wpf.tests
             foreach (var fsut in sut)
             {
                 AssertForecastDataPoint(fsut);
+            }
+        }
+
+        private void AssertMainViewModel(MainViewModel sut)
+        {
+            Assert.IsNotNull(sut);
+            Assert.AreEqual(11, sut.ForecastApiCalls);
+            Assert.IsTrue(sut.HasSuccess);
+            Assert.IsFalse(sut.IsBusy);
+            Assert.IsNotNull(sut.Current);
+            AssertForecastViewModel(sut.Current);
+            Assert.AreEqual(7, sut.Daily.Count);
+            foreach (var fsut in sut.Daily)
+            {
+                AssertForecastViewModel(fsut);
             }
         }
     }
