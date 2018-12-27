@@ -11,6 +11,10 @@ namespace pg.DarkSky.Wpf.ViewModels
         public MainViewModel()
         {
             RefreshDataCommand = new pgCommand(async (param) => { await RefreshData(); });
+            Current = new ForecastViewModel();
+            Daily = new ObservableCollection<ForecastViewModel>();
+            SelectableLanguage = new ObservableCollection<string>();
+            SelectableCity = new ObservableCollection<string>();
         }
 
         private bool _hasSuccess;

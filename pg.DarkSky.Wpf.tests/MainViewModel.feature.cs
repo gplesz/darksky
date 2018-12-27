@@ -315,6 +315,159 @@ this.INotifyPropertyChanged("ForecastViewModel Humidity", "ForecastViewModel", "
 this.INotifyPropertyChanged("ForecastViewModel UvIndex", "ForecastViewModel", "UvIndex", "15", ((string[])(null)));
 #line hidden
         }
+        
+        public virtual void CurrentINotifyPropertyChanged(string tesztnev, string tipusnev, string tulajdonsag, string ertek, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Current INotifyPropertyChanged", null, exampleTags);
+#line 26
+this.ScenarioInitialize(scenarioInfo);
+            this.ScenarioStart();
+#line 27
+ testRunner.Given(string.Format("egy \'{0}\' viewmodel", tipusnev), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
+#line 28
+ testRunner.When(string.Format("a \'{0}\' értékét beállítom a Current tulajdonságon erre az \'{1}\'-re", tulajdonsag, ertek), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
+#line 29
+ testRunner.Then(string.Format("a \'{0}\' a Current tulajdonságon az értéke ez lesz: \'{1}\'", tulajdonsag, ertek), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Akkor ");
+#line 30
+ testRunner.And("nem érkezik esemény", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "És ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.Time")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.Time")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.Time")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "Time")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "12/27/2018 10:00:00 +01:00")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_Time()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.Time", "MainViewModel", "Time", "12/27/2018 10:00:00 +01:00", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.Summary")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.Summary")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.Summary")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "Summary")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "summary")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_Summary()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.Summary", "MainViewModel", "Summary", "summary", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.Icon")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.Icon")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.Icon")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "Icon")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "icon")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_Icon()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.Icon", "MainViewModel", "Icon", "icon", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.Temperature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.Temperature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.Temperature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "Temperature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "5.5")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_Temperature()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.Temperature", "MainViewModel", "Temperature", "5.5", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.ApparentTemperature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.ApparentTemperature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.ApparentTemperature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "ApparentTemperature")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "5.5")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_ApparentTemperature()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.ApparentTemperature", "MainViewModel", "ApparentTemperature", "5.5", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.AtmosphericPressure")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.AtmosphericPressure")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.AtmosphericPressure")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "AtmosphericPressure")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "5.5")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_AtmosphericPressure()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.AtmosphericPressure", "MainViewModel", "AtmosphericPressure", "5.5", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.WindSpeed")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.WindSpeed")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.WindSpeed")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "WindSpeed")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "5.5")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_WindSpeed()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.WindSpeed", "MainViewModel", "WindSpeed", "5.5", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.Humidity")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.Humidity")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.Humidity")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "Humidity")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "5.5")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_Humidity()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.Humidity", "MainViewModel", "Humidity", "5.5", ((string[])(null)));
+#line hidden
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Current INotifyPropertyChanged: MainViewModel Current.UvIndex")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel Current.UvIndex")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel Current.UvIndex")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "UvIndex")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "15")]
+        public virtual void CurrentINotifyPropertyChanged_MainViewModelCurrent_UvIndex()
+        {
+#line 26
+this.CurrentINotifyPropertyChanged("MainViewModel Current.UvIndex", "MainViewModel", "UvIndex", "15", ((string[])(null)));
+#line hidden
+        }
     }
 }
 #pragma warning restore
