@@ -54,6 +54,12 @@
       <DependentUpon>ForecastModel.feature</DependentUpon>
     </Compile>
     <Compile Include="ForecastModelSteps.cs" />
+    <Compile Include="MainViewModel.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainViewModel.feature</DependentUpon>
+    </Compile>
+    <Compile Include="MainViewModelSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -100,6 +106,10 @@
     <None Include="ForecastModel.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ForecastModel.feature.cs</LastGenOutput>
+    </None>
+    <None Include="MainViewModel.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>MainViewModel.feature.cs</LastGenOutput>
     </None>
     <None Include="specflow.json" />
   </ItemGroup>
