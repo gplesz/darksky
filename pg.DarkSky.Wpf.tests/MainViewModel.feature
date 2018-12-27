@@ -3,11 +3,11 @@
 
 
 Forgatókönyv vázlat: INotifyPropertyChanged
-	Adott egy viewmodel
+	Adott egy '<típusnév>' viewmodel
 	Ha a '<tulajdonság>' értékét beállítom erre az '<érték>'-re
 	Akkor a '<tulajdonság>' értéke ez lesz: '<érték>'
 	És a megfelelő esemény megérkezik: '<tulajdonság>'
 Példák: 
-	| tulajdonság | érték |
-	| HasSuccess  | true  |
-	| IsBusy      | true  |
+	| tesztnév                 | típusnév      | tulajdonság | érték |
+	| MainViewModel HasSuccess | MainViewModel | HasSuccess  | true  |
+	| MainViewModel IsBusy     | MainViewModel | IsBusy      | true  |

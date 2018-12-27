@@ -88,14 +88,14 @@ namespace pg.DarkSky.Wpf.tests
             testRunner.CollectScenarioErrors();
         }
         
-        public virtual void INotifyPropertyChanged(string tulajdonsag, string ertek, string[] exampleTags)
+        public virtual void INotifyPropertyChanged(string tesztnev, string tipusnev, string tulajdonsag, string ertek, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("INotifyPropertyChanged", null, exampleTags);
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("egy viewmodel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
+ testRunner.Given(string.Format("egy \'{0}\' viewmodel", tipusnev), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
 #line 7
  testRunner.When(string.Format("a \'{0}\' értékét beállítom erre az \'{1}\'-re", tulajdonsag, ertek), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
 #line 8
@@ -107,28 +107,32 @@ this.ScenarioInitialize(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("INotifyPropertyChanged: HasSuccess")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("INotifyPropertyChanged: MainViewModel HasSuccess")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "HasSuccess")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel HasSuccess")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel HasSuccess")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "HasSuccess")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "true")]
-        public virtual void INotifyPropertyChanged_HasSuccess()
+        public virtual void INotifyPropertyChanged_MainViewModelHasSuccess()
         {
 #line 5
-this.INotifyPropertyChanged("HasSuccess", "true", ((string[])(null)));
+this.INotifyPropertyChanged("MainViewModel HasSuccess", "MainViewModel", "HasSuccess", "true", ((string[])(null)));
 #line hidden
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("INotifyPropertyChanged: IsBusy")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("INotifyPropertyChanged: MainViewModel IsBusy")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "MainViewModel")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "IsBusy")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "MainViewModel IsBusy")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tesztnév", "MainViewModel IsBusy")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:típusnév", "MainViewModel")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:tulajdonság", "IsBusy")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:érték", "true")]
-        public virtual void INotifyPropertyChanged_IsBusy()
+        public virtual void INotifyPropertyChanged_MainViewModelIsBusy()
         {
 #line 5
-this.INotifyPropertyChanged("IsBusy", "true", ((string[])(null)));
+this.INotifyPropertyChanged("MainViewModel IsBusy", "MainViewModel", "IsBusy", "true", ((string[])(null)));
 #line hidden
         }
     }

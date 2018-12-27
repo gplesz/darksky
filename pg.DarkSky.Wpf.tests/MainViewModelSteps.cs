@@ -10,14 +10,15 @@ namespace pg.DarkSky.Wpf.tests
     [Binding]
     public class MainViewModelSteps
     {
-        private MainViewModel sut;
+        private object sut;
         private List<string> events = new List<string>();
 
-        [Given(@"egy viewmodel")]
-        public void AmennyibenEgyViewmodel()
+        [Given(@"egy '(.*)' viewmodel")]
+        public void AmennyibenEgyViewmodel(string typeName)
         {
-            sut = new MainViewModel();
-            sut.PropertyChanged += Sut_PropertyChanged;
+            var t = Type.GetType($"pg.DarkSky.Wpf.ViewModels.{typeName}, pg.DarkSky.Wpf", true);
+            sut = Activator.CreateInstance(t);
+            ((ViewModelBase)sut).PropertyChanged += Sut_PropertyChanged;
         }
 
         private void Sut_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
