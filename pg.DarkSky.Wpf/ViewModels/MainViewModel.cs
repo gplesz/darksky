@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace pg.DarkSky.Wpf.ViewModels
+﻿namespace pg.DarkSky.Wpf.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public int MyProperty { get; set; }
+        private bool _hasSuccess;
+        public bool HasSuccess { get { return _hasSuccess; } set { SetProperty(value, ref _hasSuccess); } }
+
+        private bool _isBusy;
+        public bool IsBusy { get { return _isBusy; } set { SetProperty(value, ref _isBusy); } }
     }
 }

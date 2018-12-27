@@ -4,9 +4,9 @@
 
 Forgatókönyv vázlat: INotifyPropertyChanged
 	Adott egy viewmodel
-	Ha a <tulajdonság> értékét beállítom erre az <érték>-re
-	Akkor a <tulajdonság> értéke ez lesz: <érték>
-	És a megfelelő esemény megérkezik: <tulajdonság>
+	Ha a '<tulajdonság>' értékét beállítom erre az '<érték>'-re
+	Akkor a '<tulajdonság>' értéke ez lesz: '<érték>'
+	És a megfelelő esemény megérkezik: '<tulajdonság>'
 Példák: 
 	| tulajdonság | érték |
 	| HasSuccess  | true  |

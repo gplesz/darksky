@@ -97,11 +97,11 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
  testRunner.Given("egy viewmodel", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Adott ");
 #line 7
- testRunner.When(string.Format("a {0} értékét beállítom erre az {1}-re", tulajdonsag, ertek), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
+ testRunner.When(string.Format("a \'{0}\' értékét beállítom erre az \'{1}\'-re", tulajdonsag, ertek), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Ha ");
 #line 8
- testRunner.Then(string.Format("a {0} értéke ez lesz: {1}", tulajdonsag, ertek), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Akkor ");
+ testRunner.Then(string.Format("a \'{0}\' értéke ez lesz: \'{1}\'", tulajdonsag, ertek), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Akkor ");
 #line 9
- testRunner.And(string.Format("a megfelelő esemény megérkezik: {0}", tulajdonsag), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "És ");
+ testRunner.And(string.Format("a megfelelő esemény megérkezik: \'{0}\'", tulajdonsag), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "És ");
 #line hidden
             this.ScenarioCleanup();
         }
