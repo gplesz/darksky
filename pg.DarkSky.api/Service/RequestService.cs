@@ -56,7 +56,7 @@ namespace pg.DarkSky.api.Service
 
             request.AddParameter("exclude", "minutely,hourly,alerts");
             request.AddParameter("units", "si");
-            request.AddParameter("lang", "hu");
+            request.AddParameter("lang", language);
 
             //todo: async hívást lehet ide tervezni, de mivel egyszer hívünk az alkalmazásból, nagy jelentősége most nincs
             //todo: tranziensre fel lehet készülni Polly-val

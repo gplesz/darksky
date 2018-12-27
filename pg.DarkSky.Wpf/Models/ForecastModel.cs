@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using pg.DarkSky.api.Service;
+using System.Collections.Generic;
 
 namespace pg.DarkSky.Wpf.Models
 {
@@ -7,7 +9,6 @@ namespace pg.DarkSky.Wpf.Models
     /// </summary>
     public class ForecastModel
     {
-
         /// <summary>
         /// Sikerült-e lekérdezni az adatokat?
         /// </summary>

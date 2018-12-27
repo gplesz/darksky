@@ -4,9 +4,72 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pg.DarkSky.Wpf"
+        xmlns:vm="clr-namespace:pg.DarkSky.Wpf.ViewModels" 
         mc:Ignorable="d"
+        DataContext="{x:Static vm:ViewModelLocator.MainViewModel }"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0"
+                      ItemsSource="{Binding SelectableCity}" 
+                      DisplayMemberPath="Name" 
+                      SelectedValuePath="Coordinates" 
+                      SelectedItem="{Binding SelectedCity}"/>
+            <ComboBox Grid.Column="1"
+                      ItemsSource="{Binding SelectableLanguage}" 
+                      DisplayMemberPath="Name" 
+                      SelectedValuePath="Code" 
+                      SelectedItem="{Binding SelectedLanguage}"/>
+            <Button Grid.Column="2" Command="{Binding RefreshDataCommand}" />
+        </Grid>
+        <Grid Grid.Row="1" 
+              Visibility="{Binding HasSuccess, Converter={StaticResource VisibleIfTrueConverter} }">
+            <TabControl>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="10" Height="10" Fill="DarkGray"/>
+                            <TextBlock>Current</TextBlock>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Current.Summary}" />
+                        <TextBlock Text="{Binding Current.Icon}" />
+                    </StackPanel>
+
+                </TabItem>
+                <TabItem Header="Today">
+                </TabItem>
+                <TabItem Header="Tomorrow">
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <StatusBar Grid.Row="2" 
+                   Visibility="{Binding HasSuccess, Converter={StaticResource VisibleIfTrueConverter} }">
+            <Grid>
+                <ProgressBar Grid.Column="0" 
+                             Width="100" Height="15" 
+                             ToolTip="Elhasznált API hívások száma"
+                             Value="{Binding ForecastApiCalls}" />
+                <TextBlock Text="{Binding ForecastApiCalls}" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Center" />
+            </Grid>
+            <Separator />
+            <TextBlock Grid.Column="1" Text="{Binding ErrorMessage}" />
+        </StatusBar>
     </Grid>
 </Window>
