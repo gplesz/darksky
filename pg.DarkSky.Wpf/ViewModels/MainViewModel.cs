@@ -7,5 +7,8 @@
 
         private bool _isBusy;
         public bool IsBusy { get { return _isBusy; } set { SetProperty(value, ref _isBusy); } }
+
+        private int _forecastApiCalls;
+        public int ForecastApiCalls { get { return _forecastApiCalls; } set { SetProperty(value, ref _forecastApiCalls); } }
     }
 }

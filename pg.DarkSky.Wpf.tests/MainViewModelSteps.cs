@@ -2,6 +2,8 @@
 using pg.DarkSky.Wpf.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Reflection;
 using TechTalk.SpecFlow;
 
@@ -27,26 +29,33 @@ namespace pg.DarkSky.Wpf.tests
         }
 
         [When(@"a '(.*)' értékét beállítom erre az '(.*)'-re")]
-        public void MajdAErteketBeallitomErreAz_Re(string propertyName, bool value)
+        public void MajdAErteketBeallitomErreAz_Re(string propertyName, string value)
         {
+
+            var example = DateTimeOffset.Now.ToString(CultureInfo.InvariantCulture);
 
             var prop = sut.GetType().GetProperty(propertyName,
                             BindingFlags.Instance | BindingFlags.Public);
-            prop.SetValue(sut, value);
+
+            var converter = TypeDescriptor.GetConverter(prop.PropertyType);
+            var val = converter.ConvertFrom(null, CultureInfo.InvariantCulture, value);
+
+            prop.SetValue(sut, val);
 
         }
 
         [Then(@"a '(.*)' értéke ez lesz: '(.*)'")]
-        public void AkkorAErtekeEzLesz(string propertyName, bool value)
+        public void AkkorAErtekeEzLesz(string propertyName, string value)
         {
             var prop = sut.GetType().GetProperty(propertyName,
                             BindingFlags.Instance | BindingFlags.Public);
 
             var result = prop.GetValue(sut);
 
-            var val = Convert.ChangeType(result, prop.PropertyType);
+            var converter = TypeDescriptor.GetConverter(prop.PropertyType);
+            var expected = converter.ConvertFrom(null, CultureInfo.InvariantCulture, value);
 
-            Assert.AreEqual(value, val);
+            Assert.AreEqual(expected, result);
 
         }
 
