@@ -19,14 +19,8 @@ namespace pg.DarkSky.Wpf.ViewModels
 
         protected virtual void SetProperty<T>(T value, ref T backingField, [CallerMemberName]string propertyName = null)
         {
-            if (
-                (backingField != null && backingField.Equals(value))
-                ||
-                (backingField == null && value == null)
-               )
-            {
-                return;
-            }
+            if (EqualityComparer<T>.Default.Equals(backingField, value)) { return; }
+
             backingField = value;
 
             OnPropertyChanged(propertyName);
