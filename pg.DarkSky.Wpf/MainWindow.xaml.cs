@@ -19,10 +19,5 @@ namespace pg.DarkSky.Wpf
         {
             InitializeComponent();
         }
-
-        private void CboSelectableLanguage_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

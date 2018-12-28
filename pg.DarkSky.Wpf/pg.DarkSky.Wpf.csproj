@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Helpers\ExtendedBinding.cs" />
     <Compile Include="Helpers\GlobalStrings.cs" />
     <Compile Include="Helpers\IconHelpers.cs" />

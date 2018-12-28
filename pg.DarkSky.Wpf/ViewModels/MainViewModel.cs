@@ -65,7 +65,31 @@ namespace pg.DarkSky.Wpf.ViewModels
             }
         }
 
+        //Ez pedig a negáltja az egyszerűbb használathoz
         public bool IsNotBusy { get { return !IsBusy; } }
+
+        private bool _isValid = false;
+        /// <summary>
+        /// Jelzi, hogy a képernyőn lévő adatok rendben vannak-e?
+        /// vagyis a lenyílók és a megjelenített adatok egymáshoz tartoznak-e. Ha nem, akkor 
+        /// false, ha igen, akkor true
+        /// </summary>
+        public bool IsValid
+        {
+            get { return _isValid; }
+            set
+            {
+                SetProperty(value, ref _isValid);
+                OnPropertyChanged(nameof(IsNotValid));
+            }
+        }
+
+        //Ez pedig a negáltja az egyszerűbb használathoz
+        public bool IsNotValid
+        {
+            get { return !IsValid; }
+            set { }
+        }
 
         public bool IsWorking
         {
@@ -113,6 +137,8 @@ namespace pg.DarkSky.Wpf.ViewModels
                 if (SetProperty(value, ref _selectedLanguage))
                 {
                     OnSelectedLanguageChanged(SelectedLanguage);
+                    //jelezzük, hogy a képernyőn lévő adatok mér nem ehhez a lenyíló értékhez tartoznak
+                    IsValid = false;
                 }
             }
         }
@@ -169,7 +195,18 @@ namespace pg.DarkSky.Wpf.ViewModels
 
         #region City Datasource to combobox
         private City _selectedCity;
-        public City SelectedCity { get { return _selectedCity; } set { SetProperty(value, ref _selectedCity); } }
+        public City SelectedCity
+        {
+            get { return _selectedCity; }
+            set
+            {
+                if (SetProperty(value, ref _selectedCity))
+                {
+                    //jelezzük, hogy a képernyőn lévő adatok mér nem ehhez a lenyíló értékhez tartoznak
+                    IsValid = false;
+                }
+            }
+        }
 
         private ObservableCollection<City> _selectableCity;
         public ObservableCollection<City> SelectableCity { get { return _selectableCity; } set { SetProperty(value, ref _selectableCity); } }
@@ -223,6 +260,7 @@ namespace pg.DarkSky.Wpf.ViewModels
             finally
             {
                 IsBusy = false;
+                IsValid = true;
                 CommandManager.InvalidateRequerySuggested();
             }
         }

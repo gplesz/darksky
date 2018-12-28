@@ -7,13 +7,18 @@
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                       xmlns:vm="clr-namespace:pg.DarkSky.Wpf.ViewModels" 
-                      xmlns:helpers="clr-namespace:pg.DarkSky.Wpf.Helpers" 
+                      xmlns:helpers="clr-namespace:pg.DarkSky.Wpf.Helpers"
+                      xmlns:converters="clr-namespace:pg.DarkSky.Wpf.Converters"
                       mc:Ignorable="d"
                       DataContext="{x:Static vm:ViewModelLocator.MainViewModel }"
                       MinHeight="450" MinWidth="650"
                       Title="pg.DarkSky" Height="450" Width="800">
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
+        <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" 
+ />
+        <converters:BoolToVisibilityConverter x:Key="VisibleIfTrueConverter2" 
+                                              TrueValue="Visible" 
+                                              FalseValue="Hidden" />
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -40,11 +45,17 @@
                       DisplayMemberPath="Name" 
                       SelectedValuePath="Code" 
                       SelectedItem="{Binding SelectedLanguage}"
-                      ToolTip="{DynamicResource MainWindow.SelectableLanguage}" SelectionChanged="CboSelectableLanguage_SelectionChanged"/>
+                      ToolTip="{DynamicResource MainWindow.SelectableLanguage}"/>
             <Button Grid.Column="2"
-                    Content="{iconPacks:FeatherIcons Kind=Repeat}"
                     ToolTip="{DynamicResource MainWindow.RefreshData}"
-                    Command="{Binding RefreshDataCommand}" />
+                    Command="{Binding RefreshDataCommand}" >
+                <Button.Content>
+                    <Grid>
+                        <Label Content="{iconPacks:FeatherIcons Kind=Repeat}" 
+                               Visibility="{Binding IsNotValid, Converter={StaticResource VisibleIfTrueConverter2} }"/>
+                    </Grid>
+                </Button.Content>
+            </Button>
         </Grid>
         <Grid Grid.Row="1" 
               Visibility="{Binding HasSuccess, Converter={StaticResource VisibleIfTrueConverter} }"
