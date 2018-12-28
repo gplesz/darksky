@@ -158,6 +158,8 @@ namespace pg.DarkSky.Wpf.ViewModels
 
             //ez pedig a nyelvi beállítások miatt (dátum, idő, számok)
             Thread.CurrentThread.CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
+            //ez pedig a Humanize miatt kell
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.DefaultThreadCurrentCulture;
 
             //ha korábban már betöltöttünk ilyet, akkor törölni kell
 

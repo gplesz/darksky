@@ -1,4 +1,5 @@
-﻿using MahApps.Metro.IconPacks;
+﻿using Humanizer;
+using MahApps.Metro.IconPacks;
 using pg.DarkSky.Wpf.Helpers;
 using System;
 using System.Windows.Media;
@@ -197,8 +198,8 @@ namespace pg.DarkSky.Wpf.ViewModels
         {
             get
             {
-                var date = Time.ToLocalTime().DateTime;
-                return $"{date.ToShortDateString()}";
+                var date = Time;
+                return $"{date.Humanize()}";
             }
         }
 
