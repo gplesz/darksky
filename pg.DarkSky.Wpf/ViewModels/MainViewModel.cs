@@ -51,7 +51,19 @@ namespace pg.DarkSky.Wpf.ViewModels
         public bool HasSuccess { get { return _hasSuccess; } set { SetProperty(value, ref _hasSuccess); } }
 
         private bool _isBusy;
-        public bool IsBusy { get { return _isBusy; } set { SetProperty(value, ref _isBusy); } }
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                if (SetProperty(value, ref _isBusy))
+                {
+                    OnPropertyChanged(nameof(IsNotBusy));
+                }
+            }
+        }
+
+        public bool IsNotBusy { get { return !IsBusy; } }
 
         public bool IsWorking
         {

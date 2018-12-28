@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MahApps.Metro.IconPacks;
+using pg.DarkSky.Wpf.Helpers;
+using System;
+using System.Windows.Media;
 
 namespace pg.DarkSky.Wpf.ViewModels
 {
@@ -12,7 +15,17 @@ namespace pg.DarkSky.Wpf.ViewModels
         public string Summary { get { return _summary; } set { SetProperty(value, ref _summary); } }
 
         private string _icon;
-        public string Icon { get { return _icon; } set { SetProperty(value, ref _icon); } }
+        public string Icon
+        {
+            get { return _icon; }
+            set
+            {
+                if(SetProperty(value, ref _icon))
+                { //ha változott az érték, jelezzük, hogy változott az ikon
+                    OnPropertyChanged(nameof(WeatherIcon));
+                }
+            }
+        }
 
         private double _temperature;
         public double Temperature { get { return _temperature; } set { SetProperty(value, ref _temperature); } }
@@ -21,16 +34,139 @@ namespace pg.DarkSky.Wpf.ViewModels
         public double ApparentTemperature { get { return _apparentTemperature; } set { SetProperty(value, ref _apparentTemperature); } }
 
         private double _atmosphericPressure;
-        public double AtmosphericPressure { get { return _atmosphericPressure; } set { SetProperty(value, ref _atmosphericPressure); } }
+        public double AtmosphericPressure
+        {
+            get { return _atmosphericPressure; }
+            set
+            {
+                if (SetProperty(value, ref _atmosphericPressure))
+                {
+                    OnPropertyChanged(nameof(AtmosphericPressureText));
+                }
+            }
+        }
 
         private double _windSpeed;
-        public double WindSpeed { get { return _windSpeed; } set { SetProperty(value, ref _windSpeed); } }
+        public double WindSpeed
+        {
+            get { return _windSpeed; }
+            set
+            {
+                if (SetProperty(value, ref _windSpeed))
+                { //ha változott az érték, jelezzük, hogy változott az ikon és a tooltip szöveg
+                    OnPropertyChanged(nameof(WindspeedIcon));
+                    OnPropertyChanged(nameof(WindSpeedText));
+                }
+            }
+        }
 
         private double _humidity;
-        public double Humidity { get { return _humidity; } set { SetProperty(value, ref _humidity); } }
+        public double Humidity
+        {
+            get { return _humidity; }
+            set
+            {
+                if (SetProperty(value, ref _humidity))
+                {
+                    OnPropertyChanged(nameof(HumidityText));
+                }
+            }
+        }
 
         private int _uvIndex;
-        public int UvIndex { get { return _uvIndex; } set { SetProperty(value, ref _uvIndex); } }
+        public int UvIndex
+        {
+            get { return _uvIndex; }
+            set
+            {
+                if (SetProperty(value, ref _uvIndex))
+                {
+                    OnPropertyChanged(nameof(UvIndexBackgroundColor));
+                }
+            }
+        }
+
+
+        public PackIconWeatherIconsKind WeatherIcon
+        {
+            get
+            {
+                return Icon.IconToWeatherIcon();
+            }
+            // az ExtendedBinding-nak szüksége van a TwoWayBinding-ra, így 
+            // ezt implementálni kell, nem csinál semmit.
+            set { }
+        }
+
+        public PackIconWeatherIconsKind WindspeedIcon
+        {
+            get
+            {
+                return WindSpeed.WindSpeedToBeaufortIcon();
+            }
+            // az ExtendedBinding-nak szüksége van a TwoWayBinding-ra, így 
+            // ezt implementálni kell, nem csinál semmit.
+            set { }
+        }
+
+        public string WindSpeedText
+        {
+            get
+            {
+                return $"{WindSpeed} m/s";
+            }
+        }
+
+        public string AtmosphericPressureText
+        {
+            get
+            {
+                return $"{AtmosphericPressure} hPa";
+            }
+        }
+
+        public string HumidityText
+        {
+            get
+            {
+                return $"{Humidity:P0}";
+            }
+        }
+
+
+        /// <summary>
+        /// Ez alapján: https://www.met.hu/idojaras/humanmeteorologia/uv-b/ismerteto/
+        /// 
+        /// todo: a weboldalon meglévő szöveg alapján lehetne többet mondani az adott értékről
+        /// </summary>
+        public SolidColorBrush UvIndexBackgroundColor
+        {
+            get
+            {
+                if (UvIndex<=2.9d)
+                {
+                    return new SolidColorBrush(Colors.DeepSkyBlue);
+                }
+
+                if (UvIndex <= 4.9d)
+                {
+                    return new SolidColorBrush(Colors.Green);
+                }
+                if (UvIndex <= 6.9d)
+                {
+                    return new SolidColorBrush(Colors.Yellow);
+                }
+                if (UvIndex <= 7.9d)
+                {
+                    return new SolidColorBrush(Colors.Orange); //ez a weboldalon #FFC400
+                }
+
+                return new SolidColorBrush(Colors.Red);
+            }
+        }
+
+
+        
 
     }
 }

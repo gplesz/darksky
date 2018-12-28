@@ -12,6 +12,7 @@ namespace pg.DarkSky.Wpf
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            //ha a verziószámok változnának, akkor ez segít a korábbi beállításokat áthozni a legújabb properties állományba
             Settings.Default.Upgrade();
 
             CultureInfo.DefaultThreadCurrentCulture =

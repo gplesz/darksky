@@ -55,7 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helpers\ExtendedBinding.cs" />
     <Compile Include="Helpers\GlobalStrings.cs" />
+    <Compile Include="Helpers\IconHelpers.cs" />
     <Compile Include="Helpers\LanguageHelpers.cs" />
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Language.cs" />
@@ -135,6 +137,9 @@
       <Version>1.6.5</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks.FeatherIcons">
+      <Version>3.0.0-alpha0096</Version>
+    </PackageReference>
+    <PackageReference Include="MahApps.Metro.IconPacks.WeatherIcons">
       <Version>3.0.0-alpha0096</Version>
     </PackageReference>
     <PackageReference Include="Serilog">

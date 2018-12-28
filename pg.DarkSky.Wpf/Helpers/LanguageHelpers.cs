@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace pg.DarkSky.Wpf.Helpers
 {
+    /// <summary>
+    /// A lokalizáció neve és az API language code között konvertál oda/vissza.
+    /// </summary>
     public static class LanguageHelpers
     {
         /// <summary>
