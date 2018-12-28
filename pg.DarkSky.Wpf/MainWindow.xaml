@@ -10,6 +10,7 @@
                       xmlns:helpers="clr-namespace:pg.DarkSky.Wpf.Helpers" 
                       mc:Ignorable="d"
                       DataContext="{x:Static vm:ViewModelLocator.MainViewModel }"
+                      MinHeight="450" MinWidth="650"
                       Title="pg.DarkSky" Height="450" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
@@ -51,35 +52,165 @@
             <Grid.Resources>
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
             </Grid.Resources>
-            <TabControl>
+            <TabControl Controls:TabControlHelper.Underlined="TabPanel">
                 <TabItem Header="{DynamicResource MainWindow.Current}" 
                          ToolTip="{DynamicResource MainWindow.Current.Tooltip}">
-                    <StackPanel>
-                        <iconPacks:PackIconWeatherIcons x:Name="SummaryIcon"
-                                                        Width="32" Height="32" 
-                                                        ToolTip="{Binding Current.Summary}"/>
-                        <iconPacks:PackIconWeatherIcons x:Name="WindspeedIcon" Width="32" Height="32"
-                                                        ToolTip="{Binding Current.WindSpeedText}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
                         <helpers:ExtendedBinding Source="{Binding Current.WeatherIcon, Mode=TwoWay}"
                                                  Target="{Binding ElementName=SummaryIcon,Path=Kind,Mode=TwoWay}"/>
-                        <helpers:ExtendedBinding Source="{Binding Current.WindspeedIcon, Mode=TwoWay}"
+
+                        <iconPacks:PackIconWeatherIcons Grid.Row="0" Grid.Column="0"
+                                                        Grid.ColumnSpan="2"
+                                                        Grid.RowSpan="2"
+                                                        HorizontalAlignment="Stretch"
+                                                        VerticalAlignment="Stretch"
+                                                        Width="Auto" Height="Auto"
+                                                        Margin="25"
+                                                        x:Name="SummaryIcon"
+                                                         />
+                        <Label VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               Grid.Row="2" Grid.Column="0" 
+                               Grid.ColumnSpan="3"
+                               FontSize="10"
+                               Content="{Binding Current.TimeText}" />
+
+                        <StackPanel Orientation="Horizontal" 
+                                    Grid.Row="2" Grid.Column="0" 
+                                    Grid.ColumnSpan="3"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    >
+
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Content="{Binding Current.Temperature}" 
+                                       FontSize="21"
+                                       Margin="0,0,0,0"
+                                       VerticalAlignment="Center" />
+                                <iconPacks:PackIconWeatherIcons Kind="Celsius" Width="16" Height="16"
+                                                                Margin="0"
+                                                                VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <Label 
+                               VerticalAlignment="Center"
+                               FontSize="22"
+                               Content="{Binding Current.Summary}" />
+
+                        </StackPanel>
+
+                        <Grid Grid.Row="0" Grid.Column="2" 
+                              Grid.RowSpan="2"
+                              HorizontalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                               Content="{DynamicResource MainWindow.Temperature}" 
+                               FontSize="10"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               />
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Content="{Binding Current.Temperature}" 
+                                       FontSize="21" FontWeight="Bold"
+                                       Margin="0,0,5,0"
+                                       VerticalAlignment="Center" />
+                                <iconPacks:PackIconWeatherIcons Kind="Celsius" Width="16" Height="16"
+                                                                Margin="0"
+                                                                VerticalAlignment="Center"/>
+                            </StackPanel>
+                            
+                            <Label Grid.Row="1"
+                               Content="{DynamicResource MainWindow.ApparentTemperature}" 
+                               FontSize="10"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               />
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Label Content="{Binding Current.ApparentTemperature}" 
+                                           FontSize="21" 
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,5,0"/>
+                                <iconPacks:PackIconWeatherIcons Kind="Celsius"
+                                                                Margin="0"
+                                                                VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <Label Grid.Row="2"
+                               Content="{DynamicResource MainWindow.WindSpeed}" 
+                               FontSize="10"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               />
+                            <StackPanel Grid.Row="2"
+                                    Orientation="Horizontal" 
+                                    HorizontalAlignment="Center">
+
+                                <helpers:ExtendedBinding Source="{Binding Current.WindspeedIcon, Mode=TwoWay}"
                                                  Target="{Binding ElementName=WindspeedIcon,Path=Kind,Mode=TwoWay}"/>
+                                <iconPacks:PackIconWeatherIcons x:Name="WindspeedIcon" 
+                                                                Width="32" Height="32"
+                                                                VerticalAlignment="Center"
+                                                                HorizontalAlignment="Center"
+                                />
+                                <Label Content="{Binding Current.WindSpeedText}" Margin="5,0,0,0"   
+                                       FontSize="20"
+                                       VerticalAlignment="Center"/>
+                            </StackPanel>
 
-                        <TextBlock Text="{Binding Current.AtmosphericPressureText}" />
-                        <TextBlock Text="{Binding Current.HumidityText}" />
+                        </Grid>
 
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Current.Temperature}" />
-                            <iconPacks:PackIconWeatherIcons Kind="Celsius"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="{Binding Current.ApparentTemperature}" />
-                            <iconPacks:PackIconWeatherIcons Kind="Celsius"/>
-                        </StackPanel>
+                        <Label Grid.Row="3" Grid.Column="0"
+                               Content="{DynamicResource MainWindow.AtmosphericPressure}" 
+                               FontSize="10"
+                               Margin="0"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               />
+                        <Label Grid.Row="3" Grid.Column="0"
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Content="{Binding Current.AtmosphericPressureText}" />
 
-                        <TextBlock Text="{Binding Current.UvIndex}" 
+                        <Label Grid.Row="3" Grid.Column="1"
+                               Content="{DynamicResource MainWindow.UvIndex}" 
+                               FontSize="10"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               />
+                        <Label Grid.Row="3" Grid.Column="1" Content="{Binding Current.UvIndex}" 
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
                                    Background="{Binding Current.UvIndexBackgroundColor}"/>
-                    </StackPanel>
+
+                        <Label Grid.Row="3" Grid.Column="2"
+                               Content="{DynamicResource MainWindow.Humidity}" 
+                               FontSize="10"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Left"
+                               />
+                        <Label Grid.Row="3" Grid.Column="2"
+                                   FontSize="16"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Content="{Binding Current.HumidityText}" />
+                    </Grid>
                 </TabItem>
                 <TabItem Header="{DynamicResource MainWindow.Forecast}" 
                          ToolTip="{DynamicResource MainWindow.Forecast.Tooltip}" >

@@ -9,7 +9,17 @@ namespace pg.DarkSky.Wpf.ViewModels
     {
 
         private DateTimeOffset _time;
-        public DateTimeOffset Time { get { return _time; } set { SetProperty(value, ref _time); } }
+        public DateTimeOffset Time
+        {
+            get { return _time; }
+            set
+            {
+                if (SetProperty(value, ref _time))
+                {
+                    OnPropertyChanged(nameof(TimeText));
+                }
+            }
+        }
 
         private string _summary;
         public string Summary { get { return _summary; } set { SetProperty(value, ref _summary); } }
@@ -113,7 +123,7 @@ namespace pg.DarkSky.Wpf.ViewModels
         {
             get
             {
-                return $"{WindSpeed} m/s";
+                return $"({WindSpeed} m/s)";
             }
         }
 
@@ -165,8 +175,23 @@ namespace pg.DarkSky.Wpf.ViewModels
             }
         }
 
+        public string TimeText
+        {
+            get
+            {
+                var date = Time.ToLocalTime().DateTime;
+                return $"{date.ToLongDateString()} {date.ToShortTimeString()}";
+            }
+        }
 
-        
-
+        /// <summary>
+        /// Ez azért kell, hogy ne oldjam fel az OnPorpertyChanged láthatóságát publicra, 
+        /// mert csak ebben azesetben kell hívnom kívülről. Ha változik a nyelv, akkor 
+        /// újra kell tölteni a dátumot, és ezt így lehet kívülről elérni
+        /// </summary>
+        internal void RaiseLanguageChanged()
+        {
+            OnPropertyChanged(nameof(TimeText));
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace pg.DarkSky.Wpf.Helpers
                 case "snow":
                     return PackIconWeatherIconsKind.Snow;
                 case "wind":
-                    return PackIconWeatherIconsKind.StrongWind;
+                    return PackIconWeatherIconsKind.Dust;
                 case "fog":
                     return PackIconWeatherIconsKind.Fog;
                 default:

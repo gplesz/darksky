@@ -10,5 +10,13 @@
     <system:String x:Key="MainWindow.ForecastApiCalls">Elhasznált API hívások száma</system:String>
     <system:String x:Key="MainWindow.SelectableLanguage">Nyelv választása</system:String>
     <system:String x:Key="MainWindow.SelectableCity">Helyszín választása</system:String>
+    <system:String x:Key="MainWindow.WindSpeed">Szélsebesség:</system:String>
+    <system:String x:Key="MainWindow.Temperature">Hőmérséklet:</system:String>
+    <system:String x:Key="MainWindow.ApparentTemperature">Hőérzet:</system:String>
+    <system:String x:Key="MainWindow.Humidity">Páratartalom:</system:String>
+    <system:String x:Key="MainWindow.UvIndex">UV Index:</system:String>
+    <system:String x:Key="MainWindow.AtmosphericPressure">Légköri nyomás:</system:String>
+
+
 
 </ResourceDictionary>

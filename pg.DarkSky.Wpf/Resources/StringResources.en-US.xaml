@@ -10,5 +10,16 @@
     <system:String x:Key="MainWindow.ForecastApiCalls">Number of used API calls</system:String>
     <system:String x:Key="MainWindow.SelectableLanguage">Select language</system:String>
     <system:String x:Key="MainWindow.SelectableCity">Select location</system:String>
+    <system:String x:Key="MainWindow.WindSpeed">Wind speed:</system:String>
+    <system:String x:Key="MainWindow.Temperature">Temperature:</system:String>
+    <system:String x:Key="MainWindow.ApparentTemperature">Feels like:</system:String>
+    <system:String x:Key="MainWindow.Humidity">Humidity:</system:String>
+    <system:String x:Key="MainWindow.UvIndex">UV Index:</system:String>
+    <system:String x:Key="MainWindow.AtmosphericPressure">Pressure:</system:String>
+
+
+    
+
+
 
 </ResourceDictionary>

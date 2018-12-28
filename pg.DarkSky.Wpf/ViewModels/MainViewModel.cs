@@ -5,9 +5,11 @@ using pg.DarkSky.Wpf.Properties;
 using Serilog;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace pg.DarkSky.Wpf.ViewModels
@@ -103,7 +105,63 @@ namespace pg.DarkSky.Wpf.ViewModels
 
         #region Language Datasource to combobox
         private Language _selectedLanguage;
-        public Language SelectedLanguage { get { return _selectedLanguage; } set { SetProperty(value, ref _selectedLanguage); } }
+        public Language SelectedLanguage
+        {
+            get { return _selectedLanguage; }
+            set
+            {
+                if (SetProperty(value, ref _selectedLanguage))
+                {
+                    OnSelectedLanguageChanged(SelectedLanguage);
+                }
+            }
+        }
+
+        private void OnSelectedLanguageChanged(Language selectedLanguage)
+        {
+            var code = selectedLanguage.Code;
+            //elmentjük későbbi használatra
+            Settings.Default.Culture = code.CodeToLanguageName();
+            Settings.Default.Save();
+            Settings.Default.Reload();
+
+            //Ez a felület nyelve miatt kell
+            CultureInfo.DefaultThreadCurrentCulture =
+                                CultureInfo.CreateSpecificCulture(Settings.Default.Culture);
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture;
+
+            //ez pedig a nyelvi beállítások miatt (dátum, idő, számok)
+            Thread.CurrentThread.CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
+
+            //ha korábban már betöltöttünk ilyet, akkor törölni kell
+
+            var oldDicts = Application.Current.Resources
+                                              .MergedDictionaries
+                                              .Where(x => x.Source
+                                                           .ToString()
+                                                           .Contains("StringResources.")
+                                              ).ToList();
+
+            for (int i = 0; i < oldDicts.Count(); i++)
+            {
+                Application.Current.Resources
+                                   .MergedDictionaries
+                                   .Remove(oldDicts[i]);
+            }
+
+            //beállítjuk az újat
+            var culture = CultureInfo.DefaultThreadCurrentCulture;
+            var dict = new ResourceDictionary
+            {
+                Source = new Uri($"pack://application:,,,/Resources/StringResources.{culture.Name}.xaml")
+            };
+            Application.Current.Resources
+                               .MergedDictionaries
+                               .Add(dict);
+
+            //szólunk, hogy változott a nyelv
+            Current.RaiseLanguageChanged();
+        }
 
         private ObservableCollection<Language> _selectableLanguage;
         public ObservableCollection<Language> SelectableLanguage { get { return _selectableLanguage; } set { SetProperty(value, ref _selectableLanguage); } }
