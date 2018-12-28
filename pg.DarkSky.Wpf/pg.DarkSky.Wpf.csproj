@@ -121,6 +121,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="MahApps.Metro">
+      <Version>1.6.5</Version>
+    </PackageReference>
     <PackageReference Include="Serilog">
       <Version>2.7.2-dev-01033</Version>
     </PackageReference>

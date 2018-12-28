@@ -154,39 +154,5 @@ namespace pg.DarkSky.Wpf.ViewModels
             }
         }
         #endregion data connection 
-
-        //https://github.com/MahApps/MahApps.Metro
-        //https://www.nuget.org/packages/MahApps.Metro.IconPacks.WeatherIcons/
-
-
-        //https://github.com/MahApps/MahApps.Metro.IconPacks
-        //https://freebiesbug.com/illustrator-freebies/geometric-weather-icons/
-        //https://www.graphicpear.com/weather-icons/
-
-        //https://www.amcharts.com/free-animated-svg-weather-icons/
-        //https://www.uplabs.com/posts/animated-svg-weather-icons
-        //https://codepen.io/getreworked/pen/GpBpmg
-        //https://codepen.io/noahblon/pen/lxukH
-        //https://codemyui.com/simple-weather-animation-svg/
-        //https://codemyui.com/cartoony-weather-animation/
-        //https://www.bypeople.com/weather-icons-animated/
-        //icons.set("clear-day", Skycons.CLEAR_DAY);
-        //icons.set("clear-night", Skycons.CLEAR_NIGHT);
-        //icons.set("partly-cloudy-day", Skycons.PARTLY_CLOUDY_DAY);
-        //icons.set("partly-cloudy-night", Skycons.PARTLY_CLOUDY_NIGHT);
-        //icons.set("cloudy", Skycons.CLOUDY);
-        //icons.set("rain", Skycons.RAIN);
-        //icons.set("sleet", Skycons.SLEET);
-        //icons.set("snow", Skycons.SNOW);
-        //icons.set("wind", Skycons.WIND);
-        //icons.set("fog", Skycons.FOG);
-
-
-
-        //fizetős
-        //https://codecanyon.net/item/animated-svg-weather-icons/12631845
-        //https://codecanyon.net/item/16-svg-weather-icons-animation-loops/16064045
-        //http://www.vectorflower.com/preview/weather_icons/index.html
-
     }
 }
