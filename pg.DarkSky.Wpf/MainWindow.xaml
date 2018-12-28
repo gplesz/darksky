@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:pg.DarkSky.Wpf"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:vm="clr-namespace:pg.DarkSky.Wpf.ViewModels" 
         mc:Ignorable="d"
         DataContext="{x:Static vm:ViewModelLocator.MainViewModel }"
@@ -34,7 +35,9 @@
                       DisplayMemberPath="Name" 
                       SelectedValuePath="Code" 
                       SelectedItem="{Binding SelectedLanguage}"/>
-            <Button Grid.Column="2" Command="{Binding RefreshDataCommand}" />
+            <Button Grid.Column="2"
+                    Content="{iconPacks:FeatherIcons Kind=Repeat}"
+                    Command="{Binding RefreshDataCommand}" />
         </Grid>
         <Grid Grid.Row="1" 
               Visibility="{Binding HasSuccess, Converter={StaticResource VisibleIfTrueConverter} }">
