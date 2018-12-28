@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using pg.DarkSky.Wpf.Helpers;
 using pg.DarkSky.Wpf.Models;
+using pg.DarkSky.Wpf.Properties;
 using Serilog;
 using System;
 using System.Collections.ObjectModel;
@@ -33,7 +35,8 @@ namespace pg.DarkSky.Wpf.ViewModels
 
             //todo: ezt elmenteni beállíthatónak
             SelectedCity = SelectableCity.Single(x => x.Coordinates == "47.49801,19.03991");
-            SelectedLanguage = SelectableLanguage.Single(x=>x.Code == "hu");
+            var code = Settings.Default.Culture.LanguageNameToCode();
+            SelectedLanguage = SelectableLanguage.Single(x=>x.Code == code);
 
         }
 

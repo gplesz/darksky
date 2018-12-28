@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xml:lang="en-US">
+    <system:String x:Key="MainWindow.RefreshData">Refresh data</system:String>
+    <system:String x:Key="MainWindow.Current">Current</system:String>
+    <system:String x:Key="MainWindow.Current.Tooltip">Current data</system:String>
+    <system:String x:Key="MainWindow.Forecast">Forecast</system:String>
+    <system:String x:Key="MainWindow.Forecast.Tooltip">forecast data for the next 7 days</system:String>
+    <system:String x:Key="MainWindow.ForecastApiCalls">Number of used API calls</system:String>
+    <system:String x:Key="MainWindow.SelectableLanguage">Select language</system:String>
+    <system:String x:Key="MainWindow.SelectableCity">Select location</system:String>
+
+</ResourceDictionary>

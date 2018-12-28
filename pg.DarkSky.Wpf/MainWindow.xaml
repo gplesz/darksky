@@ -9,7 +9,7 @@
         xmlns:vm="clr-namespace:pg.DarkSky.Wpf.ViewModels" 
         mc:Ignorable="d"
         DataContext="{x:Static vm:ViewModelLocator.MainViewModel }"
-        Title="MainWindow" Height="450" Width="800">
+        Title="pg.DarkSky" Height="450" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
     </Window.Resources>
@@ -26,36 +26,36 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <ComboBox Grid.Column="0"
+                      x:Name="CboSelectableCity"
                       ItemsSource="{Binding SelectableCity}" 
                       DisplayMemberPath="Name" 
                       SelectedValuePath="Coordinates" 
-                      SelectedItem="{Binding SelectedCity}"/>
+                      SelectedItem="{Binding SelectedCity}"
+                      ToolTip="{DynamicResource MainWindow.SelectableCity}"/>
             <ComboBox Grid.Column="1"
+                      x:Name="CboSelectableLanguage"
                       ItemsSource="{Binding SelectableLanguage}" 
                       DisplayMemberPath="Name" 
                       SelectedValuePath="Code" 
-                      SelectedItem="{Binding SelectedLanguage}"/>
+                      SelectedItem="{Binding SelectedLanguage}"
+                      ToolTip="{DynamicResource MainWindow.SelectableLanguage}" SelectionChanged="CboSelectableLanguage_SelectionChanged"/>
             <Button Grid.Column="2"
                     Content="{iconPacks:FeatherIcons Kind=Repeat}"
+                    ToolTip="{DynamicResource MainWindow.RefreshData}"
                     Command="{Binding RefreshDataCommand}" />
         </Grid>
         <Grid Grid.Row="1" 
               Visibility="{Binding HasSuccess, Converter={StaticResource VisibleIfTrueConverter} }">
             <TabControl>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal">
-                            <Ellipse Width="10" Height="10" Fill="DarkGray"/>
-                            <TextBlock>Current</TextBlock>
-                        </StackPanel>
-                    </TabItem.Header>
+                <TabItem Header="{DynamicResource MainWindow.Current}" 
+                         ToolTip="{DynamicResource MainWindow.Current.Tooltip}">
                     <StackPanel>
                         <TextBlock Text="{Binding Current.Summary}" />
                         <TextBlock Text="{Binding Current.Icon}" />
                     </StackPanel>
-
                 </TabItem>
-                <TabItem Header="Forecast" ToolTip="Forecast for 7 days">
+                <TabItem Header="{DynamicResource MainWindow.Forecast}" 
+                         ToolTip="{DynamicResource MainWindow.Forecast.Tooltip}" >
                 </TabItem>
             </TabControl>
         </Grid>
@@ -64,7 +64,7 @@
             <Grid>
                 <ProgressBar Grid.Column="0" 
                              Width="100" Height="15" 
-                             ToolTip="Elhasznált API hívások száma"
+                             ToolTip="{DynamicResource MainWindow.ForecastApiCalls}"
                              Value="{Binding ForecastApiCalls}" />
                 <TextBlock Text="{Binding ForecastApiCalls}" 
                            HorizontalAlignment="Center" 

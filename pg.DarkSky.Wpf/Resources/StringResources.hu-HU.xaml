@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xml:lang="en-US">
+    <system:String x:Key="MainWindow.RefreshData">Adatok újratöltése</system:String>
+    <system:String x:Key="MainWindow.Current">Aktuális</system:String>
+    <system:String x:Key="MainWindow.Current.Tooltip">Aktuális adatok</system:String>
+    <system:String x:Key="MainWindow.Forecast">Előrejelzés</system:String>
+    <system:String x:Key="MainWindow.Forecast.Tooltip">Előrejelzési adatok a következő 7 napra</system:String>
+    <system:String x:Key="MainWindow.ForecastApiCalls">Elhasznált API hívások száma</system:String>
+    <system:String x:Key="MainWindow.SelectableLanguage">Nyelv választása</system:String>
+    <system:String x:Key="MainWindow.SelectableCity">Helyszín választása</system:String>
+
+</ResourceDictionary>
