@@ -85,11 +85,7 @@ namespace pg.DarkSky.Wpf.ViewModels
         }
 
         //Ez pedig a negáltja az egyszerűbb használathoz
-        public bool IsNotValid
-        {
-            get { return !IsValid; }
-            set { }
-        }
+        public bool IsNotValid { get { return !IsValid; } }
 
         public bool IsWorking
         {
@@ -273,5 +269,6 @@ namespace pg.DarkSky.Wpf.ViewModels
             }
         }
         #endregion data connection 
+
     }
 }

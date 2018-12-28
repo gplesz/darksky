@@ -138,7 +138,5 @@ namespace pg.DarkSky.Wpf.Controls
             set { SetValue(UvIndexBackgroundColorProperty, value); }
         }
 
-
-
     }
 }
