@@ -17,6 +17,7 @@ namespace pg.DarkSky.Wpf.ViewModels
                 if (SetProperty(value, ref _time))
                 {
                     OnPropertyChanged(nameof(TimeText));
+                    OnPropertyChanged(nameof(ShortTimeText));
                 }
             }
         }
@@ -38,10 +39,18 @@ namespace pg.DarkSky.Wpf.ViewModels
         }
 
         private double _temperature;
-        public double Temperature { get { return _temperature; } set { SetProperty(value, ref _temperature); } }
+        public double Temperature
+        {
+            get { return Math.Round(_temperature,1); }
+            set { SetProperty(value, ref _temperature); }
+        }
 
         private double _apparentTemperature;
-        public double ApparentTemperature { get { return _apparentTemperature; } set { SetProperty(value, ref _apparentTemperature); } }
+        public double ApparentTemperature
+        {
+            get { return Math.Round(_apparentTemperature,1); }
+            set { SetProperty(value, ref _apparentTemperature); }
+        }
 
         private double _atmosphericPressure;
         public double AtmosphericPressure
@@ -123,7 +132,7 @@ namespace pg.DarkSky.Wpf.ViewModels
         {
             get
             {
-                return $"({WindSpeed} m/s)";
+                return $"({WindSpeed:0.0} m/s)";
             }
         }
 
@@ -131,7 +140,7 @@ namespace pg.DarkSky.Wpf.ViewModels
         {
             get
             {
-                return $"{AtmosphericPressure} hPa";
+                return $"{AtmosphericPressure:0.0} hPa";
             }
         }
 
@@ -184,6 +193,15 @@ namespace pg.DarkSky.Wpf.ViewModels
             }
         }
 
+        public string ShortTimeText
+        {
+            get
+            {
+                var date = Time.ToLocalTime().DateTime;
+                return $"{date.ToShortDateString()}";
+            }
+        }
+
         /// <summary>
         /// Ez azért kell, hogy ne oldjam fel az OnPorpertyChanged láthatóságát publicra, 
         /// mert csak ebben azesetben kell hívnom kívülről. Ha változik a nyelv, akkor 
@@ -192,6 +210,7 @@ namespace pg.DarkSky.Wpf.ViewModels
         internal void RaiseLanguageChanged()
         {
             OnPropertyChanged(nameof(TimeText));
+            OnPropertyChanged(nameof(ShortTimeText));
         }
     }
 }

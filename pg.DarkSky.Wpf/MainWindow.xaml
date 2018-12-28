@@ -11,8 +11,8 @@
                       xmlns:uctrls="clr-namespace:pg.DarkSky.Wpf.Controls"
                       mc:Ignorable="d"
                       DataContext="{x:Static vm:ViewModelLocator.MainViewModel }"
-                      MinHeight="450" MinWidth="650"
-                      Title="pg.DarkSky" Height="450" Width="800">
+                      MinHeight="500" MinWidth="650"
+                      Title="pg.DarkSky" Height="500" Width="800">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="VisibleIfTrueConverter" />
         <converters:BoolToVisibilityConverter x:Key="VisibleIfTrueConverter2" 
@@ -80,6 +80,33 @@
                 </TabItem>
                 <TabItem Header="{DynamicResource MainWindow.Forecast}" 
                          ToolTip="{DynamicResource MainWindow.Forecast.Tooltip}" >
+                    <Controls:MetroAnimatedSingleRowTabControl
+                        TabStripPlacement="Left"
+                        ItemsSource="{Binding Daily}">
+                        <TabControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock>                            
+                                    <TextBlock Text="{Binding ShortTimeText}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </TabControl.ItemTemplate>
+                        <TabControl.ContentTemplate>
+                            <DataTemplate>
+                                <uctrls:Forecast
+                                        UvIndexBackgroundColor="{Binding UvIndexBackgroundColor}"
+                                        Summary="{Binding Summary}"
+                                        ApparentTemperature="{Binding ApparentTemperature}"
+                                        UvIndex="{Binding UvIndex}"
+                                        TimeText="{Binding TimeText}"
+                                        HumidityText="{Binding HumidityText}"
+                                        WindspeedIcon="{Binding WindspeedIcon}"
+                                        WindSpeedText="{Binding WindSpeedText}"
+                                        WeatherIcon="{Binding WeatherIcon}"
+                                        Temperature="{Binding Temperature}"
+                                        AtmosphericPressureText="{Binding AtmosphericPressureText}" />
+                            </DataTemplate>
+                        </TabControl.ContentTemplate>
+                    </Controls:MetroAnimatedSingleRowTabControl>
                 </TabItem>
             </TabControl>
 

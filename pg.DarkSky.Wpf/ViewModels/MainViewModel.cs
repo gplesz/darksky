@@ -187,6 +187,10 @@ namespace pg.DarkSky.Wpf.ViewModels
 
             //szólunk, hogy változott a nyelv
             Current.RaiseLanguageChanged();
+            foreach (var day in Daily)
+            {
+                day.RaiseLanguageChanged();
+            }
         }
 
         private ObservableCollection<Language> _selectableLanguage;
@@ -232,7 +236,9 @@ namespace pg.DarkSky.Wpf.ViewModels
                 tcs.Token.ThrowIfCancellationRequested();
                 if (result.IsValid)
                 {
-                    mapper.Map(result, this);
+                    //A daily tab view nem enged csak az UI szálról adatot módosítani
+                    App.Current.Dispatcher.Invoke(() => mapper.Map(result, this))
+                    ;
                 }
                 else
                 {
