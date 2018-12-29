@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using pg.DarkSky.api.Model;
 using pg.DarkSky.api.Service;
 using pg.DarkSky.Wpf.Models;
 using pg.DarkSky.Wpf.Profiles;
@@ -9,6 +10,19 @@ namespace pg.DarkSky.Wpf.ViewModels
 {
     public static class ViewModelLocator
     {
+        private static readonly IOptions<ServiceOptions> Options;
+
+        static ViewModelLocator()
+        {
+            Options = new Options<ServiceOptions>(new ServiceOptions { ApiKey = Settings.Default.APIKey });
+        }
+
+        public static void SetApiKey(string apiKey)
+        {
+            //todo: ezt mediator-ral ki lehetne váltani
+            Options.Value.ApiKey = apiKey;
+        }
+
         public static MainViewModel MainViewModel
         {
             get
@@ -19,8 +33,9 @@ namespace pg.DarkSky.Wpf.ViewModels
                     cfg.AddProfile<ForecastProfile>();
                 }).CreateMapper();
 
+
                 //todo: apikey a beállításokból jöjjön
-                var service = new RequestService(Settings.Default.APIKey, logger);
+                var service = new RequestService(Options, logger);
 
                 var repository = new ForecastRepository(service, mapper);
 

@@ -22,6 +22,8 @@ namespace pg.DarkSky.Wpf.ViewModels
                     Settings.Default.APIKey = ApiKey;
                     Settings.Default.Save();
                     Settings.Default.Reload();
+                    //küldjük a felületnek az új API-t
+                    ViewModelLocator.SetApiKey(ApiKey);
                 }
             }
         }

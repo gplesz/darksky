@@ -1,4 +1,5 @@
-﻿using RestSharp;
+﻿using pg.DarkSky.api.Model;
+using RestSharp;
 using Serilog;
 using System;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace pg.DarkSky.api.Service
         //todo: ezt alkalmazás paraméterként be lehetne kérni, de nem változik, szóval a feladat miatt nem érdemes
         private readonly string host = "https://api.darksky.net";
         //todo: ahogy ezt is alkalmazás paraméterként be lehetne kérni, Option pattern-nel, mondjuk, attól függ, hogy az apikey honnan jön
-        private readonly string apiKey;
+        private readonly IOptions<ServiceOptions> options;
         private RestClient client;
         private string xForecastApiCalls = "X-Forecast-API-Calls";
 
@@ -25,14 +26,14 @@ namespace pg.DarkSky.api.Service
         ///       konkrétan: az apikey marad itt, a coordinates és a language pedig hívásról hívásra változik.
         ///       Ez egyébként amúgyis így van, úgyhogy ezt 
         /// </summary>
-        /// <param name="apiKey">api kulcs</param>
-        public RequestService(string apiKey, ILogger logger)
+        /// <param name="options">A szerviz bejövő paraméterei</param>
+        public RequestService(IOptions<ServiceOptions> options, ILogger logger)
         {
-            if (string.IsNullOrWhiteSpace(apiKey))
+            if (options?.Value==null || string.IsNullOrWhiteSpace(options.Value.ApiKey))
             {
-                throw new ArgumentException("message", nameof(apiKey));
+                throw new ArgumentException(nameof(options));
             }
-            this.apiKey = apiKey;
+            this.options = options ?? throw new ArgumentNullException(nameof(options));
 
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
@@ -51,7 +52,7 @@ namespace pg.DarkSky.api.Service
         public Model.ApiResult<Model.FromDarkSky.ApiResponse> GetCurrentAndDailyData(string coordinates, string language)
         {
             var request = new RestRequest("/forecast/{apiKey}/{coordinates}");
-            request.AddUrlSegment("apiKey", apiKey);
+            request.AddUrlSegment("apiKey", options.Value.ApiKey);
             request.AddUrlSegment("coordinates", coordinates);
 
             request.AddParameter("exclude", "minutely,hourly,alerts");
@@ -65,7 +66,7 @@ namespace pg.DarkSky.api.Service
 
             if (!result.IsSuccessful)
             {
-                logger.Error("Request to API {Host} was unsuccessful. Parameters: {coordinates}, {language} StatusCode: {StatusCode}, Description: {StatusDescription}",
+                logger.Error("Request to API {Host} was unsuccessful. Parameters: {Coordinates}, {Language} StatusCode: {StatusCode}, Description: {StatusDescription}",
                     coordinates, language,
                     host, result.StatusCode, result.StatusDescription);
                 return new Model.ApiResult<Model.FromDarkSky.ApiResponse> { HasSuccess = false };
