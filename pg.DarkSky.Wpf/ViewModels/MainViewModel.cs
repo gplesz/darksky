@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using MahApps.Metro;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using pg.DarkSky.Wpf.Helpers;
 using pg.DarkSky.Wpf.Models;
 using pg.DarkSky.Wpf.Properties;
@@ -8,6 +11,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace pg.DarkSky.Wpf.ViewModels
@@ -216,7 +220,7 @@ namespace pg.DarkSky.Wpf.ViewModels
                 else
                 {
                     HasSuccess = false;
-                    ErrorMessage = "Hiba történt az adatfrissítés közben";
+                    throw new Exception("Hiba történt az adatfrissítés közben");
                 }
             }, tcs.Token);
 
@@ -238,6 +242,22 @@ namespace pg.DarkSky.Wpf.ViewModels
             }
             finally
             {
+                Tuple<AppTheme, Accent> appStyle = ThemeManager.DetectAppStyle(Application.Current);
+                if (HasSuccess)
+                {
+                    if (!appStyle.Item2.Name.Equals(GlobalStrings.Blue, StringComparison.OrdinalIgnoreCase))
+                    {
+                        ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(GlobalStrings.Blue), appStyle.Item1);
+                    }
+                }
+                else
+                {
+                    if (!appStyle.Item2.Name.Equals(GlobalStrings.Red, StringComparison.OrdinalIgnoreCase))
+                    {
+                        ThemeManager.ChangeAppStyle(Application.Current, ThemeManager.GetAccent(GlobalStrings.Red), appStyle.Item1);
+                    }
+                }
+
                 IsBusy = false;
                 IsValid = true;
                 CommandManager.InvalidateRequerySuggested();
