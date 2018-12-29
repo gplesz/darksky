@@ -14,7 +14,7 @@ namespace pg.DarkSky.Wpf.ViewModels
 
         static ViewModelLocator()
         {
-            Options = new Options<ServiceOptions>(new ServiceOptions { ApiKey = Settings.Default.APIKey });
+            Options = new Options<ServiceOptions>(new ServiceOptions(Settings.Default.APIKey));
         }
 
         public static void SetApiKey(string apiKey)

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using pg.DarkSky.api.Model;
 using pg.DarkSky.api.Service;
 using pg.DarkSky.Wpf.Models;
 using pg.DarkSky.Wpf.Profiles;
@@ -36,7 +37,7 @@ namespace pg.DarkSky.Wpf.tests
         public void AmennyibenEgyForecastRepositoryFelparameterezveEsAdatokkal(string apiKey)
         {
             logger.Information("Create API request service");
-            var service = new RequestService(apiKey, logger);
+            var service = new RequestService(new Options<ServiceOptions>(new ServiceOptions(apiKey)), logger);
             logger.Information("Create forecast repository");
             repository = new ForecastRepository(service, mapper);
         }

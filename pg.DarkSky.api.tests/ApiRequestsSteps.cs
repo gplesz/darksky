@@ -29,7 +29,7 @@ namespace pg.DarkSky.api.tests
         public void AmennyibenEgyAPIKapcsolatEsAdatokkal(string apiKey)
         {
             logger.Information("Create API request service");
-            service = new Service.RequestService(apiKey, logger);
+            service = new RequestService(new Options<ServiceOptions>(new ServiceOptions(apiKey)), logger);
         }
 
         [When(@"lekérdezem az időjárási adatokat '(.*)' és '(.*)' adatokkal")]
