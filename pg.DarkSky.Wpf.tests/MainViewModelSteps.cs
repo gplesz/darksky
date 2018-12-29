@@ -101,9 +101,11 @@ namespace pg.DarkSky.Wpf.tests
         }
 
         [Then(@"a megfelelő esemény megérkezik: '(.*)'")]
-        public void AkkorAMegfeleloEsemenyMegerkezik(string propertyName)
+        public void AkkorAMegfeleloEsemenyMegerkezik(string eventNames)
         {
-            var expected = new List<string> { propertyName };
+            //Ha több eseményt várunk, akkor ezeket vesszővel választjuk el
+            var expectedEvents = eventNames.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var expected = new List<string>(events);
 
             CollectionAssert.AreEqual(expected, events);
         }

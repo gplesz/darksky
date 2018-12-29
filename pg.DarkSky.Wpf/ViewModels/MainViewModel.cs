@@ -37,11 +37,6 @@ namespace pg.DarkSky.Wpf.ViewModels
             SelectableLanguage = new ObservableCollection<Language>(SelectableDataSources.GetLanguages());
             SelectableCity = new ObservableCollection<City>(SelectableDataSources.GetCities());
 
-            //todo: ezt elmenteni beállíthatónak
-            SelectedCity = SelectableCity.Single(x => x.Coordinates == "47.49801,19.03991");
-            var code = Settings.Default.Culture.LanguageNameToCode();
-            SelectedLanguage = SelectableLanguage.Single(x=>x.Code == code);
-
             SettingsViewModel = new SettingsViewModel();
 
         }
@@ -51,6 +46,13 @@ namespace pg.DarkSky.Wpf.ViewModels
             this.forecastRepository = forecastRepository ?? throw new ArgumentNullException(nameof(forecastRepository));
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+            //Ezek csak az éles felhasználáshoz kellenek, ezért a default konstruktorba nem kellenek
+            //todo: ezt elmenteni beállíthatónak
+            SelectedCity = SelectableCity.Single(x => x.Coordinates == "47.49801,19.03991");
+            var code = Settings.Default.Culture.LanguageNameToCode();
+            SelectedLanguage = SelectableLanguage.Single(x => x.Code == code);
+
         }
 
         private bool _hasSuccess;

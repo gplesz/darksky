@@ -31,7 +31,11 @@ namespace pg.DarkSky.Wpf.Profiles
                 .ForMember(d => d.Daily, o => o.MapFrom(s => s.Data.daily.data));
 
             CreateMap<ForecastModelDataPoint, ForecastViewModel>()
-                ;
+                //csak olvasható property-k a megjelenítéshez, nem kell mappelni
+                .ForMember(d => d.WeatherIcon, o => o.Ignore())
+                .ForMember(d => d.WindspeedIcon, o => o.Ignore());
+            ;
+            
 
             CreateMap<ForecastModel, MainViewModel>()
                 .ForMember(d => d.HasSuccess, o => o.MapFrom(s => s.IsValid))
@@ -46,9 +50,9 @@ namespace pg.DarkSky.Wpf.Profiles
                 .ForMember(d => d.SelectedCity, o => o.Ignore())
                 .ForMember(d => d.SelectableLanguage, o => o.Ignore())
                 .ForMember(d => d.SelectedLanguage, o => o.Ignore())
+                .ForMember(d => d.SettingsViewModel, o => o.Ignore())
+                .ForMember(d => d.ErrorMessage, o => o.Ignore())
                 ;
-
-
         }
 
         private static DateTimeOffset FromUnixTimeToDateTime(long time)
