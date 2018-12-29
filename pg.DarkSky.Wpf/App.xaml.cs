@@ -1,4 +1,5 @@
 ﻿using pg.DarkSky.Wpf.Properties;
+using Serilog;
 using System;
 using System.Globalization;
 using System.Linq;
@@ -16,6 +17,15 @@ namespace pg.DarkSky.Wpf
         {
             //ha a verziószámok változnának, akkor ez segít a korábbi beállításokat áthozni a legújabb properties állományba
             Settings.Default.Upgrade();
+
+            //betöltjük a naplózást
+            Log.Logger = new LoggerConfiguration()
+                              //.MinimumLevel.Verbose()
+                              //.WriteTo.RollingFile("pg.DarkSky.Wpf-{Date}.txt")
+                              .ReadFrom.AppSettings()
+                              .CreateLogger();
+
+            Log.Information("App OnStartup");
 
             LoadCultureSettings(false);
 
@@ -65,6 +75,13 @@ namespace pg.DarkSky.Wpf
             Application.Current.Resources
                                .MergedDictionaries
                                .Add(dict);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Log.Information("App OnExit");
+            Log.CloseAndFlush();
+            base.OnExit(e);
         }
     }
 }
