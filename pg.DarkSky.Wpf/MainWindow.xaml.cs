@@ -19,5 +19,35 @@ namespace pg.DarkSky.Wpf
         {
             InitializeComponent();
         }
+
+        private void BtnAbout_Click(object sender, RoutedEventArgs e)
+        {
+            FlyAbout.IsOpen = !FlyAbout.IsOpen;
+        }
+
+        private void BtnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            FlySettings.IsOpen = !FlySettings.IsOpen;
+        }
+
+        private void BtnDarkSky_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://darksky.net/poweredby/");
+        }
+
+        private void BtnMahapps_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://mahapps.com/");
+        }
+
+        private void BtnFeather_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://feathericons.com/");
+        }
+
+        private void BtnWeather_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://erikflowers.github.io/weather-icons/");
+        }
     }
 }

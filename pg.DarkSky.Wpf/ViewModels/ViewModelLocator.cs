@@ -2,6 +2,7 @@
 using pg.DarkSky.api.Service;
 using pg.DarkSky.Wpf.Models;
 using pg.DarkSky.Wpf.Profiles;
+using pg.DarkSky.Wpf.Properties;
 using Serilog;
 
 namespace pg.DarkSky.Wpf.ViewModels
@@ -19,7 +20,7 @@ namespace pg.DarkSky.Wpf.ViewModels
                 }).CreateMapper();
 
                 //todo: apikey a beállításokból jöjjön
-                var service = new RequestService("2f4659626fb968a85a5ff22561962711", logger);
+                var service = new RequestService(Settings.Default.APIKey, logger);
 
                 var repository = new ForecastRepository(service, mapper);
 

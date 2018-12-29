@@ -5,11 +5,9 @@ using pg.DarkSky.Wpf.Properties;
 using Serilog;
 using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace pg.DarkSky.Wpf.ViewModels
@@ -39,6 +37,8 @@ namespace pg.DarkSky.Wpf.ViewModels
             SelectedCity = SelectableCity.Single(x => x.Coordinates == "47.49801,19.03991");
             var code = Settings.Default.Culture.LanguageNameToCode();
             SelectedLanguage = SelectableLanguage.Single(x=>x.Code == code);
+
+            SettingsViewModel = new SettingsViewModel();
 
         }
 
@@ -87,6 +87,10 @@ namespace pg.DarkSky.Wpf.ViewModels
         //Ez pedig a negáltja az egyszerűbb használathoz
         public bool IsNotValid { get { return !IsValid; } }
 
+        /// <summary>
+        /// Ezt egyelőre nem használjuk, de ha egy task-ban mennek a feladatok, akkor ezzel automatikusan 
+        /// lehet jelezni, mikor dolgozunk éppen
+        /// </summary>
         public bool IsWorking
         {
             get
@@ -123,6 +127,10 @@ namespace pg.DarkSky.Wpf.ViewModels
         private ObservableCollection<ForecastViewModel> _daily;
         public ObservableCollection<ForecastViewModel> Daily { get { return _daily; } set { SetProperty(value, ref _daily); } }
 
+        private SettingsViewModel _settingsViewModel;
+        public SettingsViewModel SettingsViewModel { get { return _settingsViewModel; } set { SetProperty(value, ref _settingsViewModel); } }
+
+
         #region Language Datasource to combobox
         private Language _selectedLanguage;
         public Language SelectedLanguage
@@ -147,41 +155,8 @@ namespace pg.DarkSky.Wpf.ViewModels
             Settings.Default.Save();
             Settings.Default.Reload();
 
-            //Ez a felület nyelve miatt kell
-            CultureInfo.DefaultThreadCurrentCulture =
-                                CultureInfo.CreateSpecificCulture(Settings.Default.Culture);
-            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.DefaultThreadCurrentCulture;
-
-            //ez pedig a nyelvi beállítások miatt (dátum, idő, számok)
-            Thread.CurrentThread.CurrentCulture = CultureInfo.DefaultThreadCurrentCulture;
-            //ez pedig a Humanize miatt kell
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.DefaultThreadCurrentCulture;
-
-            //ha korábban már betöltöttünk ilyet, akkor törölni kell
-
-            var oldDicts = Application.Current.Resources
-                                              .MergedDictionaries
-                                              .Where(x => x.Source
-                                                           .ToString()
-                                                           .Contains("StringResources.")
-                                              ).ToList();
-
-            for (int i = 0; i < oldDicts.Count(); i++)
-            {
-                Application.Current.Resources
-                                   .MergedDictionaries
-                                   .Remove(oldDicts[i]);
-            }
-
-            //beállítjuk az újat
-            var culture = CultureInfo.DefaultThreadCurrentCulture;
-            var dict = new ResourceDictionary
-            {
-                Source = new Uri($"pack://application:,,,/Resources/StringResources.{culture.Name}.xaml")
-            };
-            Application.Current.Resources
-                               .MergedDictionaries
-                               .Add(dict);
+            //Újratöltjük a szövegeket
+            App.LoadCultureSettings(true);
 
             //szólunk, hogy változott a nyelv
             Current.RaiseLanguageChanged();
@@ -269,6 +244,8 @@ namespace pg.DarkSky.Wpf.ViewModels
             }
         }
         #endregion data connection 
+
+
 
     }
 }

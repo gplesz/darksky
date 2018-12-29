@@ -34,5 +34,17 @@ namespace pg.DarkSky.Wpf.Properties {
                 this["Culture"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2f4659626fb968a85a5ff22561962711")]
+        public string APIKey {
+            get {
+                return ((string)(this["APIKey"]));
+            }
+            set {
+                this["APIKey"] = value;
+            }
+        }
     }
 }

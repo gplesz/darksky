@@ -16,7 +16,7 @@
     <system:String x:Key="MainWindow.Humidity">Páratartalom:</system:String>
     <system:String x:Key="MainWindow.UvIndex">UV Index:</system:String>
     <system:String x:Key="MainWindow.AtmosphericPressure">Légköri nyomás:</system:String>
-
-
+    <system:String x:Key="MainWindow.About">Névjegy</system:String>
+    <system:String x:Key="MainWindow.Settings">Beállítások</system:String>
 
 </ResourceDictionary>

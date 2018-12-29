@@ -5,5 +5,8 @@
     <Setting Name="Culture" Type="System.String" Scope="User">
       <Value Profile="(Default)">en-US</Value>
     </Setting>
+    <Setting Name="APIKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">2f4659626fb968a85a5ff22561962711</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
